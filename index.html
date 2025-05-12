@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>FRACT System | Division 5</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-sequence p {
+      color: #7dd3fc;
+      font-size: 0.9rem;
+      opacity: 1;
+      margin: 4px 0;
+      letter-spacing: 0.05em;
+      visibility: hidden;
+      white-space: pre;
+    }
+
+    .boot-logo.move-up {
+      animation: logoUp 0.8s ease forwards;
+    }
+
+    @keyframes logoUp {
+      from {
+        transform: translateY(0);
+      }
+      to {
+        transform: translateY(-120px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 起動画面 -->
+<div class="boot-screen" id="bootScreen">
+  <div class="boot-logo" id="bootLogo">
+   <h1>FRACT</h1>
+   <p class="subtext">Fractalis Reactive Analysis</p>
+   <p class="subtext">Control Terminal System</p>
+  </div>
+  <p class="login-prompt" id="authPrompt">TAP TO INITIATE</p>
+  <div class="auth-sequence" id="authSequence">
+    <p>Scanning retina...</p>
+    <p>Identity confirmed: DIVISION 5 Operative</p>
+    <p>Access Node: D5-ROOT / Clearance Level 04</p>
+  </div>
+</div>
+
+<!-- 本編トップ画面 -->
+<div class="container" id="mainUI" style="display: none;">
+  <header>
+    <div class="title-block">
+      <h1>FRACT SYSTEM</h1>
+      <span class="version">v5.07</span>
+    </div>
+  </header>
+
+  <div class="logo-area">
+    <img src="img/emblem.png" alt="Division 5 Emblem" class="emblem">
+  </div>
+
+  <nav class="menu">
+    <div class="menu-buttons">
+      <div class="menu-button with-badge">
+        <span class="icon">▶</span> OPERATIVES <span class="badge">05</span>
+      </div>
+      <div class="menu-button">
+        <span class="icon">▶</span> MISSION DATA
+      </div>
+      <div class="menu-button">
+        <span class="icon">▶</span> DIMENSIONAL LOGS
+      </div>
+      <div class="menu-button">
+        <span class="icon">▶</span> ANALYSIS MODULE
+      </div>
+      <div class="menu-button">
+        <span class="icon">▶</span> TACTICAL NETWORK
+      </div>
+    </div>
+  </nav>
+
+  <footer>
+    <p class="system-log">[LOG] Access Node: FRACT-ROOT... <span class="blinker">_</span></p>
+  </footer>
+</div>
+
+<script>
+const bootScreen = document.getElementById("bootScreen");
+const mainUI = document.getElementById("mainUI");
+const authPrompt = document.getElementById("authPrompt");
+const authSequence = document.getElementById("authSequence");
+const bootLogo = document.getElementById("bootLogo");
+
+function typeText(element, text, delay, callback) {
+  let i = 0;
+  element.textContent = "";
+  element.style.visibility = "visible";
+  const interval = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (callback) callback();
+    }
+  }, delay);
+}
+
+bootScreen.addEventListener("click", () => {
+  authPrompt.style.display = "none";
+  bootLogo.classList.add("move-up");
+
+  setTimeout(() => {
+    const lines = authSequence.querySelectorAll("p");
+    const texts = Array.from(lines).map(p => p.textContent);
+    lines.forEach(p => {
+      p.textContent = "";
+      p.style.visibility = "visible";
+    });
+
+    function showLines(index) {
+      if (index < lines.length) {
+        typeText(lines[index], texts[index], 30, () => showLines(index + 1));
+      }
+    }
+
+    showLines(0);
+  }, 800);
+
+  setTimeout(() => {
+    bootScreen.style.display = "none";
+    mainUI.style.display = "block";
+  }, 3000);
+});
+</script>
+
+</body>
+</html>
