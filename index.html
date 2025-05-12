@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FRACT System | Division 5</title>
   <link rel="stylesheet" href="style.css">
   <style>
@@ -42,7 +43,7 @@
   <div class="auth-sequence" id="authSequence">
     <p>Scanning retina...</p>
     <p>Identity confirmed: DIVISION 5 Operative</p>
-    <p>Access Node: D5-ROOT / Clearance Level 04</p>
+    <p>Access Node: D5-ROOT / Clearance Level:07 .........</p>
   </div>
 </div>
 
@@ -119,17 +120,17 @@ bootScreen.addEventListener("click", () => {
 
     function showLines(index) {
       if (index < lines.length) {
-        typeText(lines[index], texts[index], 30, () => showLines(index + 1));
+        typeText(lines[index], texts[index], 18, () => showLines(index + 1)); // ← 表示速度！
       }
     }
 
     showLines(0);
-  }, 800);
+  }, 500);
 
   setTimeout(() => {
     bootScreen.style.display = "none";
     mainUI.style.display = "block";
-  }, 3000);
+  }, 3300);
 });
 </script>
 
