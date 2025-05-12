@@ -249,18 +249,8 @@ body::before {
 
 @keyframes logoUp {
   to {
-    transform: translateY(-80px);
+    transform: translateY(-40px);
   }
-}
-
-.auth-sequence {
-  opacity: 0;
-  transition: opacity 1.9s ease;  /* ← ゆっくりフェードイン */
-  margin-top: -20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 .auth-sequence p {
@@ -271,4 +261,12 @@ body::before {
 
 .auth-sequence.visible {
   opacity: 1;
+}
+
+.auth-sequence {
+  margin-top: -60px; /* ← 表示位置 */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
