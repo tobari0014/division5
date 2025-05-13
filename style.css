@@ -253,22 +253,8 @@ body::before {
   }
 }
 
-.auth-sequence p {
-  visibility: hidden;
-  font-family: 'Noto Sans JP', sans-serif;
-  white-space: pre; /* ← 半角スペース保持のため */
-}
-
 .auth-sequence.visible {
   opacity: 1;
-}
-
-.auth-sequence {
-  margin-top: -60px; /* ← 表示位置 */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
 }
 
 
