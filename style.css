@@ -1,3 +1,276 @@
+body {
+  background-color: #0b0f17;
+  color: #c9d1d9;
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #58a6ff;
+  margin-bottom: 0;
+}
+
+.version {
+  font-size: 0.8rem;
+  color: #4e6e8e;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #6e7681;
+  margin-top: 4px;
+}
+
+.logo-area img.emblem {
+  width: 180px;
+  margin: 20px 0;
+  opacity: 0.85;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 16px 0;
+}
+
+.menu a {
+  color: #58a6ff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.menu a:hover {
+  color: #a5d6ff;
+  letter-spacing: 1px;
+}
+
+footer {
+  margin-top: 60px;
+}
+
+.system-log {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #48c78e;
+}
+
+.blinker {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.title-block {
+  display: inline-block;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.title-block h1 {
+  font-size: 2.4rem;
+  color: #3b82f6;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-shadow: 1px 1px 2px #0008;
+  margin: 0;
+}
+
+.version {
+  font-size: 0.85rem;
+  color: #4e6e8e;
+  display: block;
+  margin-top: 2px;
+}
+
+.boot-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #0b0f17;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  color: #dbeafe;
+}
+
+.boot-logo {
+  text-align: center;
+  position: relative;
+  padding: 40px 0;
+}
+
+.boot-logo::before,
+.boot-logo::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 1px;
+  background-color: #3b82f6; /* 青系 */
+  opacity: 0.4;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.boot-logo::before {
+  top: 0;
+}
+
+.boot-logo::after {
+  bottom: 0;
+}
+
+.boot-logo h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0;
+  color: #dbeafe;
+  letter-spacing: 0.1em;
+}
+
+.subtext {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin: 2px 0;
+  letter-spacing: 0.1em;
+}
+
+.login-prompt {
+  margin-top: 50px;
+  font-size: 1.0rem;
+  color: #9ca3af; /* 灰色寄り */
+  animation: fadeblink 2s ease-in-out infinite;
+  letter-spacing: 0.2em;
+}
+
+@keyframes fadeblink {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.menu-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-button {
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  padding: 14px 20px;
+  margin: 12px 0;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+  max-width: 260px; /* ← ここが新しい固定幅 */
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.menu-button .icon {
+  display: inline-block;
+  color: #3b82f6;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* 通知バッジ*/
+.badge {
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  font-family: 'Noto Sans JP', sans-serif; /* ゴシック系、端末UIに馴染む */
+  border-radius: 0; /* カクカクに */
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  line-height: 1;
+  z-index: 10;
+}
+
+
+.boot-logo.move-up {
+  animation: logoUp 0.8s ease forwards;
+}
+
+@keyframes logoUp {
+  to {
+    transform: translateY(-40px);
+  }
+}
+
+.auth-sequence p {
+  visibility: hidden;
+  font-family: 'Noto Sans JP', sans-serif;
+  white-space: pre; /* ← 半角スペース保持のため */
+}
+
+.auth-sequence.visible {
+  opacity: 1;
+}
+
+.auth-sequence {
+  margin-top: -60px; /* ← 表示位置 */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 
 /* モバイル最適化・青ハイライト除去・タップ滑らか化 */
 html, body {
