@@ -242,11 +242,6 @@ body::before {
   z-index: 10;
 }
 
-
-.boot-logo.move-up {
-  animation: logoUp 0.8s ease forwards;
-}
-
 @keyframes logoUp {
   to {
     transform: translateY(-40px);
@@ -297,11 +292,11 @@ html, body {
 }
 
 .auth-sequence p {
+  visibility: hidden;
   color: #7dd3fc;
   font-size: 1rem;
   margin: 4px 0;
   letter-spacing: 0.05em;
-  visibility: hidden;
 }
 
 /* フォント調整・メニュー対応 */
@@ -326,4 +321,10 @@ html, body {
   .title-block h1 {
     font-size: 2.6rem;
   }
+}
+
+.menu-button:hover {
+  background: linear-gradient(120deg, #1e40af, #1e3a8a);
+  color: #dbeafe;
+  letter-spacing: 0.5px;
 }
