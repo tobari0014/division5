@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .auth-sequence p {
-      color: #7dd3fc;
+      color: #78eea0;
       font-size: 0.9rem;
       opacity: 1;
       margin: 4px 0;
@@ -16,17 +16,32 @@
       white-space: pre;
     }
 
-    .boot-logo.move-up {
-      animation: logoUp 0.8s ease forwards;
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 2px;
+      background: transparent;
+      z-index: 1;
     }
 
-    @keyframes logoUp {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(-120px);
-      }
+    .scan-line::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 130%;
+      width: 100%;
+      background: linear-gradient(to right, transparent, #ff3c3c, transparent);
+      animation: line-move 2.5s linear forwards;
+      opacity: 0.8;
+      animation-delay: 0s;
+    }
+
+    @keyframes line-move {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
     }
   </style>
 </head>
@@ -40,12 +55,14 @@
    <p class="subtext">Control Terminal System</p>
   </div>
   <p class="login-prompt" id="authPrompt">TAP TO INITIATE</p>
-  <div class="auth-sequence" id="authSequence">
+  <div class="auth-sequence" id="authSequence" style="display: none;">
+    <div class="scan-line"></div>
     <p>Scanning retina...</p>
-    <p>Identity confirmed: DIVISION 5 Operative</p>
-    <p>Access Node: D5-ROOT / Clearance Level:07 .........</p>
+    <p>Identity confirmed: DIVISION <span style="color:#fc4d4d;">5</span> Operative</p>
+    <p>Access Node: D5-ROOT / Clearance Level: <span style="color:#fc4d4d;">07</span> .........</p>
   </div>
 </div>
+
 <!-- 本編トップ画面 -->
 <div class="container" id="mainUI" style="display: none;">
   <header>
@@ -61,9 +78,9 @@
 
   <nav class="menu">
     <div class="menu-buttons">
-      <div class="menu-button with-badge">
-        <span class="icon">▶</span> OPERATIVES <span class="badge">05</span>
-      </div>
+<div class="menu-button with-badge" onclick="location.href='operator.html'">
+  <span class="icon">▶</span> OPERATIVES <span class="badge">13</span>
+</div>
       <div class="menu-button">
         <span class="icon">▶</span> MISSION DATA
       </div>
@@ -91,45 +108,36 @@ const authPrompt = document.getElementById("authPrompt");
 const authSequence = document.getElementById("authSequence");
 const bootLogo = document.getElementById("bootLogo");
 
-function typeText(element, text, delay, callback) {
-  let i = 0;
-  element.textContent = "";
-  element.style.visibility = "visible";
-  const interval = setInterval(() => {
-    element.textContent += text[i];
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      if (callback) callback();
-    }
-  }, delay);
+function showLinesOneByOne(lines, index) {
+  if (index < lines.length) {
+    lines[index].style.visibility = "visible";
+    setTimeout(() => showLinesOneByOne(lines, index + 1), 800);
+  }
 }
 
 bootScreen.addEventListener("click", () => {
   authPrompt.style.display = "none";
-  bootLogo.classList.add("move-up");
+  bootLogo.style.display = "none"; // ロゴを非表示
+
+  const lines = authSequence.querySelectorAll("p");
+  setTimeout(() => {
+    lines[0].style.visibility = "visible";
+  }, 0);
 
   setTimeout(() => {
-    const lines = authSequence.querySelectorAll("p");
-    const texts = Array.from(lines).map(p => p.textContent);
-    lines.forEach(p => {
-      p.textContent = "";
-      p.style.visibility = "visible";
-    });
+    lines[1].style.visibility = "visible";
+  }, 2000);
 
-    function showLines(index) {
-      if (index < lines.length) {
-        typeText(lines[index], texts[index], 18, () => showLines(index + 1)); // ← 表示速度！
-      }
-    }
-
-    showLines(0);
-  }, 500);
-
+  setTimeout(() => {
+    lines[2].style.visibility = "visible";
+  }, 3100); authSequence.style.display = "block";
+  authSequence.classList.add("visible");
+  authSequence.style.visibility = "visible";
+  // 認証テキストは1行ずつ表示
   setTimeout(() => {
     bootScreen.style.display = "none";
     mainUI.style.display = "block";
-  }, 3300);
+  }, 4000);
 });
 </script>
 
