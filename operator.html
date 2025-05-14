@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Division 5 Operatives</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+      background-color: #0f172a;
+      color: #ffffff;
+    }
+
+    .nav-top {
+      position: sticky;
+      top: 0;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      z-index: 100;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .back-btn {
+      font-size: 1rem;
+      background: linear-gradient(120deg, #1e293b, #111827);
+      color: #dbeafe;
+      font-weight: bold;
+      border: 1px solid #3b82f6;
+      border-radius: 6px;
+      padding: 8px 14px;
+      cursor: pointer;
+      margin-right: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: #1e40af;
+    }
+
+    .header-title {
+      display: none;
+    }
+
+    .map-scroll {
+      padding: 20px 10px 40px;
+    }
+
+    .unit-group {
+      border: 2px dashed #4ade80;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 24px auto;
+      width: fit-content;
+      background-color: rgba(34,197,94,0.05);
+    }
+
+    .group-label {
+      font-weight: bold;
+      color: #a7f3d0;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .unit-grid {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: nowrap;
+    }
+
+    .unit-box {
+      width: 160px;
+      height: 160px;
+      background: #334155;
+      border: 2px solid #60a5fa;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #e2e8f0;
+      font-size: 1.3rem;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+.page-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #93c5fd;
+  margin: 16px auto 0;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <div class="nav-top">
+    <button onclick="location.href='index.html'" class="back-btn">≪</button>
+    <span class="header-title">中央治安維持局 第五特異災害対策課</span>
+  </div>
+
+<h1 class="page-title">中央治安維持局 第五特異災害対策課</h1>
+
+  <div class="map-scroll">
+
+    <div class="unit-group">
+      <div class="group-label">課長</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='takatori.html'">鷹取</div>
+      </div>
+    </div>
+
+    <div class="unit-group">
+      <div class="group-label">戦闘班</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='shishido.html'">獅子堂</div>
+        <div class="unit-box" onclick="location.href='kamishiro.html'">神城</div>
+        <div class="unit-box" onclick="location.href='jia.html'">ジア</div>
+      </div>
+    </div>
+
+    <div class="unit-group">
+      <div class="group-label">調査班</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='asahina.html'">朝比奈</div>
+        <div class="unit-box" onclick="location.href='makabe.html'">真壁</div>
+        <div class="unit-box" onclick="location.href='eiven.html'">エイヴェン</div>
+      </div>
+    </div>
+
+    <div class="unit-group">
+      <div class="group-label">解析班</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='kuze.html'">久世</div>
+        <div class="unit-box" onclick="location.href='fushimi.html'">伏見</div>
+        <div class="unit-box" onclick="location.href='yaemori.html'">八重森</div>
+      </div>
+    </div>
+
+    <div class="unit-group">
+      <div class="group-label">医療班</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='hazama.html'">狭間</div>
+        <div class="unit-box" onclick="location.href='hiiragi.html'">柊</div>
+      </div>
+    </div>
+
+    <div class="unit-group">
+      <div class="group-label">記録班</div>
+      <div class="unit-grid">
+        <div class="unit-box" onclick="location.href='mochizuki.html'">望月</div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
