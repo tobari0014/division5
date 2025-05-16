@@ -66,12 +66,13 @@
       text-align: center;
     }
 
-    .unit-grid {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: nowrap;
-    }
+.unit-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  justify-content: flex-start; /* ←ここ重要！ */
+  flex-wrap: nowrap;
+}
 
     .unit-box {
       width: 160px;
