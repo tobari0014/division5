@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap');
+
+:root {
+  --font-main: 'Orbitron', sans-serif;
+  --font-overlay: 'Rajdhani', sans-serif;
+  --font-japanese: 'Zen Kaku Gothic New', sans-serif;
+}
+
+
+/* 共通フォント */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* ナビゲーションボタン */
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 10px 16px;
+  background: transparent;
+}
+
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #1e40af;
+}
+
+/* 背景＆構成 */
+.profile-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: transparent;
+  isolation: isolate;
+}
+
+.profile-bg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 1080px;
+  min-height: 1500px;
+  object-fit: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* テキストオーバーレイ */
+.text-overlay {
+  color: #e0f2fe;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.03),
+    rgba(255,255,255,0.03) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  max-width: 80%;
+  z-index: 10;
+  font-family: var(--font-overlay);
+  font-size: 1rem;
+}
+
+.name-en {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.name-ja {
+  font-size: 2.0rem;
+  margin-bottom: 8px;
+  font-family: var(--font-japanese);
+  letter-spacing: -0.03em; /* ← 微調整で詰まりすぎず自然に */
+}
+
+.profile-meta {
+  font-size: 1.05rem;  /* ← 元は 0.95rem。行間とのバランス◎ */
+  color: #e2e8f0;
+  line-height: 1.7;
+}
+
+.meta-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.logo {
+  background-color: #4ade80;
+  color: #0f172a;
+  font-size: 0.8rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.detail-button {
+  font-family: 'Orbitron', sans-serif;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 12px;
+}
+
+.detail-button:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0f2fe;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* レスポンシブ対応：スマホ */
+@media (max-width: 768px) {
+  .profile-bg {
+    width: 100vw;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .text-overlay {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    max-width: 80%;
+  }
+}
+
+/* PC時のオーバーレイ配置 */
+@media (min-width: 769px) {
+  .text-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: calc(50% - 500px);
+    max-width: 80%;
+  }
+}
