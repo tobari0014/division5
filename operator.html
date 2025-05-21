@@ -3,27 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Division 5 Operatives</title>
+  <title>Division 5 Operators</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Noto Sans JP', sans-serif;
+      padding: 24px 12px;
       background-color: #0f172a;
-      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      color: #e2e8f0;
     }
-
     .nav-top {
       position: sticky;
       top: 0;
       background: transparent;
-      box-shadow: none;
       padding: 10px 16px;
-      display: flex;
-      align-items: center;
       z-index: 100;
     }
-
     .back-btn {
       font-size: 1rem;
       background: linear-gradient(120deg, #1e293b, #111827);
@@ -33,64 +29,76 @@
       border-radius: 6px;
       padding: 8px 14px;
       cursor: pointer;
-      margin-right: 12px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       transition: background 0.2s ease;
     }
-
     .back-btn:hover {
       background: #1e40af;
     }
-
     .page-title {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       color: #93c5fd;
-      margin: 16px auto 0;
-      font-weight: bold;
-    }
-
-    .map-scroll {
-      padding: 20px 10px 40px;
-    }
-
-    .unit-group {
-      border: 2px dashed #4ade80;
-      border-radius: 12px;
-      padding: 16px;
       margin: 24px auto;
-      width: fit-content;
-      background-color: rgba(34,197,94,0.05);
-    }
-
-    .group-label {
       font-weight: bold;
-      color: #a7f3d0;
-      margin-bottom: 12px;
-      text-align: center;
     }
-
-    .unit-grid {
-      display: flex;
+    .card-container {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 16px;
-      justify-content: flex-start;
-      flex-wrap: nowrap;
-      overflow-x: auto;
+      justify-content: center;
     }
-
-    .unit-box {
-      width: 160px;
+    @media screen and (min-width: 768px) {
+      .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    }
+    .character-card {
+      position: relative;
+      width: 300px;
       height: 160px;
-      border-radius: 8px;
-      overflow: hidden;
+      margin: 0 auto;
       cursor: pointer;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
-
-    .unit-box img {
+    .character-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 8px;
+      display: block;
+    }
+    .card-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 45%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 12px;
+      box-sizing: border-box;
+      text-align: left;
+    }
+    .char-name {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .char-unit {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    @media screen and (max-width: 600px) {
+      .character-card {
+        width: 260px;
+        height: 140px;
+      }
     }
   </style>
 </head>
@@ -98,83 +106,110 @@
   <div class="nav-top">
     <button onclick="location.href='index.html'" class="back-btn">≪</button>
   </div>
+  <div class="page-title">中央治安維持局 第五特異災害対策課</div>
+  <div class="card-container">
 
-  <h1 class="page-title">中央治安維持局 第五特異災害対策課</h1>
-
-  <div class="map-scroll">
-
-    <div class="unit-group">
-      <div class="group-label">課長</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/takatori.html'">
-          <img src="d5/img/takatori_icon.jpg" alt="鷹取" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/zia.html'">
+      <img src="d5/img/zia_icon.jpg" alt="Zia Cales">
+      <div class="card-overlay">
+        <div class="char-name">Zia Cales</div>
+        <div class="char-unit">Combat Unit</div>
       </div>
     </div>
 
-    <div class="unit-group">
-      <div class="group-label">戦闘班</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/shishido.html'">
-          <img src="d5/img/shishido_icon.jpg" alt="獅子堂" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/kamishiro.html'">
-          <img src="d5/img/kamishiro_icon.jpg" alt="神城" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/zia.html'">
-          <img src="d5/img/zia_icon.jpg" alt="ジア" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/asahina.html'">
+      <img src="d5/img/asahina_icon.jpg" alt="Asahina Hakuren">
+      <div class="card-overlay">
+        <div class="char-name">Asahina Hakuren</div>
+        <div class="char-unit">Investigation Unit</div>
       </div>
     </div>
 
-    <div class="unit-group">
-      <div class="group-label">調査班</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/asahina.html'">
-          <img src="d5/img/asahina_icon.jpg" alt="朝比奈" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/makabe.html'">
-          <img src="d5/img/makabe_icon.jpg" alt="真壁" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/aven.html'">
-          <img src="d5/img/aven_icon.jpg" alt="エイヴェン" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/makabe.html'">
+      <img src="d5/img/makabe_icon.jpg" alt="Makabe Shizuka">
+      <div class="card-overlay">
+        <div class="char-name">Makabe Shizuka</div>
+        <div class="char-unit">Investigation Unit</div>
       </div>
     </div>
 
-    <div class="unit-group">
-      <div class="group-label">解析班</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/kuze.html'">
-          <img src="d5/img/kuze_icon.jpg" alt="久世" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/fushimi.html'">
-          <img src="d5/img/fushimi_icon.jpg" alt="伏見" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/yaemori.html'">
-          <img src="d5/img/yaemori_icon.jpg" alt="八重森" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/aven.html'">
+      <img src="d5/img/aven_icon.jpg" alt="Aven Nocteil">
+      <div class="card-overlay">
+        <div class="char-name">Aven Nocteil</div>
+        <div class="char-unit">Investigation Unit</div>
       </div>
     </div>
 
-    <div class="unit-group">
-      <div class="group-label">医療班</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/hazama.html'">
-          <img src="d5/img/hazama_icon.jpg" alt="狭間" />
-        </div>
-        <div class="unit-box" onclick="location.href='d5/hiiragi.html'">
-          <img src="d5/img/hiiragi_icon.jpg" alt="柊" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/kamishiro.html'">
+      <img src="d5/img/kamishiro_icon.jpg" alt="Kamishiro Ryo">
+      <div class="card-overlay">
+        <div class="char-name">Kamishiro Ryo</div>
+        <div class="char-unit">Combat Unit</div>
       </div>
     </div>
 
-    <div class="unit-group">
-      <div class="group-label">記録班</div>
-      <div class="unit-grid">
-        <div class="unit-box" onclick="location.href='d5/mochizuki.html'">
-          <img src="d5/img/mochizuki_icon.jpg" alt="望月" />
-        </div>
+    <div class="character-card" onclick="location.href='d5/shishido.html'">
+      <img src="d5/img/shishido_icon.jpg" alt="Shishido Raika">
+      <div class="card-overlay">
+        <div class="char-name">Shishido Raika</div>
+        <div class="char-unit">Combat Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/takatori.html'">
+      <img src="d5/img/takatori_icon.jpg" alt="Takatori Atsushi">
+      <div class="card-overlay">
+        <div class="char-name">Takatori Atsushi</div>
+        <div class="char-unit">Division 5 Chief</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/kuze.html'">
+      <img src="d5/img/kuze_icon.jpg" alt="Kuze Azisa">
+      <div class="card-overlay">
+        <div class="char-name">Kuze Azisa</div>
+        <div class="char-unit">Analysis Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/fushimi.html'">
+      <img src="d5/img/fushimi_icon.jpg" alt="Fushimi Touma">
+      <div class="card-overlay">
+        <div class="char-name">Fushimi Touma</div>
+        <div class="char-unit">Analysis Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/yaemori.html'">
+      <img src="d5/img/yaemori_icon.jpg" alt="Yaemori Ren">
+      <div class="card-overlay">
+        <div class="char-name">Yaemori Ren</div>
+        <div class="char-unit">Analysis Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/hazama.html'">
+      <img src="d5/img/hazama_icon.jpg" alt="Hazama Kaname">
+      <div class="card-overlay">
+        <div class="char-name">Hazama Kaname</div>
+        <div class="char-unit">Medical Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/hiiragi.html'">
+      <img src="d5/img/hiiragi_icon.jpg" alt="Hiiragi Ritsu">
+      <div class="card-overlay">
+        <div class="char-name">Hiiragi Ritsu</div>
+        <div class="char-unit">Medical Unit</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/mochizuki.html'">
+      <img src="d5/img/mochizuki_icon.jpg" alt="Mochizuki Zin">
+      <div class="card-overlay">
+        <div class="char-name">Mochizuki Zin</div>
+        <div class="char-unit">Record Unit</div>
       </div>
     </div>
 
