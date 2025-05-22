@@ -145,13 +145,12 @@ body {
 /* レスポンシブ対応：スマホ */
 @media (max-width: 768px) {
   .profile-bg {
-    max-width: 100%;
-    width: auto;          /* ← 明示することで画像に従わせる */
+    width: 100%;
     height: auto;
     position: absolute;
+    top: 0;              /* ← 中央から「上寄せ」に変更 */
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%); /* ← translateYは不要に */
   }
 
   .text-overlay {
