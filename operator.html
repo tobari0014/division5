@@ -214,5 +214,15 @@
     </div>
 
   </div>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const img = document.querySelector('.profile-bg');
+    if (window.innerWidth <= 768) {
+      const src = img.getAttribute('src');
+      const spSrc = src.replace('_bg.jpg', '_bg_sp.jpg');
+      img.setAttribute('src', spSrc);
+    }
+  });
+</script>
 </body>
 </html>
