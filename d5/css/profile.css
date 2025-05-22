@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&display=swap');
 
 :root {
   --font-main: 'Orbitron', sans-serif;
@@ -89,10 +88,17 @@ body {
   z-index: 10;
   font-family: var(--font-overlay);
   font-size: 1rem;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.75),
+    0 0 1px rgba(0, 0, 0, 0.5); /* ← 輪郭補強 */
+
+  /* optional: 非対応ブラウザをカバーするストローク */
+  -webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.3);
 }
 
+
 .name-en {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: #94a3b8;
 }
 
@@ -101,6 +107,11 @@ body {
   margin-bottom: 8px;
   font-family: var(--font-japanese);
   letter-spacing: -0.03em; /* ← 微調整で詰まりすぎず自然に */
+}
+
+.name-ja.aven {
+  font-size: 1.8em;
+  letter-spacing: -0.07em;
 }
 
 .profile-meta {

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Division 5 Operators</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -14,6 +15,7 @@
       color: #e2e8f0;
     }
     .nav-top {
+      display: flex;
       position: sticky;
       top: 0;
       background: transparent;
@@ -100,19 +102,55 @@
         height: 140px;
       }
     }
+
+.emblem-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+}
+
+.emblem-img {
+  height: 180px; /* サイズ調整してね */
+  width: auto;
+}
+
+.nav-top {
+  display: flex;
+  padding: 10px 16px;
+}
+.back-btn {
+  margin-left: 0; /* ← 左に余白を作らない */
+}
+
+  
   </style>
 </head>
 <body>
-  <div class="nav-top">
-    <button onclick="location.href='index.html'" class="back-btn">≪</button>
-  </div>
-  <div class="page-title">中央治安維持局 第五特異災害対策課</div>
+<!-- 戻るボタン -->
+<div class="nav-top">
+  <button onclick="location.href='index.html'" class="back-btn">≪</button>
+</div>
+
+<!-- 上部エンブレム -->
+<div class="emblem-container">
+  <img src="img/emblem.png" alt="五課エンブレム" class="emblem-img">
+</div>
+
   <div class="card-container">
 
-    <div class="character-card" onclick="location.href='d5/zia.html'">
-      <img src="d5/img/zia_icon.jpg" alt="Zia Cales">
+    <div class="character-card" onclick="location.href='d5/takatori.html'">
+      <img src="d5/img/takatori_icon.jpg" alt="Takatori Atsushi">
       <div class="card-overlay">
-        <div class="char-name">Zia Cales</div>
+        <div class="char-name">Takatori Atsushi</div>
+        <div class="char-unit">Division 5 Chief</div>
+      </div>
+    </div>
+
+    <div class="character-card" onclick="location.href='d5/shishido.html'">
+      <img src="d5/img/shishido_icon.jpg" alt="Shishido Raika">
+      <div class="card-overlay">
+        <div class="char-name">Shishido Raika</div>
         <div class="char-unit">Combat Unit</div>
       </div>
     </div>
@@ -125,11 +163,11 @@
       </div>
     </div>
 
-    <div class="character-card" onclick="location.href='d5/makabe.html'">
-      <img src="d5/img/makabe_icon.jpg" alt="Makabe Shizuka">
+    <div class="character-card" onclick="location.href='d5/zia.html'">
+      <img src="d5/img/zia_icon.jpg" alt="Zia Cales">
       <div class="card-overlay">
-        <div class="char-name">Makabe Shizuka</div>
-        <div class="char-unit">Investigation Unit</div>
+        <div class="char-name">Zia Cales</div>
+        <div class="char-unit">Combat Unit</div>
       </div>
     </div>
 
@@ -149,19 +187,11 @@
       </div>
     </div>
 
-    <div class="character-card" onclick="location.href='d5/shishido.html'">
-      <img src="d5/img/shishido_icon.jpg" alt="Shishido Raika">
+    <div class="character-card" onclick="location.href='d5/makabe.html'">
+      <img src="d5/img/makabe_icon.jpg" alt="Makabe Shizuka">
       <div class="card-overlay">
-        <div class="char-name">Shishido Raika</div>
-        <div class="char-unit">Combat Unit</div>
-      </div>
-    </div>
-
-    <div class="character-card" onclick="location.href='d5/takatori.html'">
-      <img src="d5/img/takatori_icon.jpg" alt="Takatori Atsushi">
-      <div class="card-overlay">
-        <div class="char-name">Takatori Atsushi</div>
-        <div class="char-unit">Division 5 Chief</div>
+        <div class="char-name">Makabe Shizuka</div>
+        <div class="char-unit">Investigation Unit</div>
       </div>
     </div>
 
@@ -214,15 +244,5 @@
     </div>
 
   </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const img = document.querySelector('.profile-bg');
-    if (window.innerWidth <= 768) {
-      const src = img.getAttribute('src');
-      const spSrc = src.replace('_bg.jpg', '_bg_sp.jpg');
-      img.setAttribute('src', spSrc);
-    }
-  });
-</script>
 </body>
 </html>
