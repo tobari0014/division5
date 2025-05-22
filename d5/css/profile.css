@@ -24,7 +24,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 10; /* ボタンは前に出るけど背景は見える */
   padding: 10px 16px;
   background: transparent;
 }
@@ -61,12 +61,13 @@ body {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: none;
   min-width: 1080px;
   min-height: 1500px;
   object-fit: none;
   z-index: 0;
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 /* テキストオーバーレイ */
@@ -148,9 +149,13 @@ body {
     width: 100%;
     height: auto;
     position: absolute;
-    top: 0;              /* ← 中央から「上寄せ」に変更 */
+    top: 0;
     left: 50%;
-    transform: translateX(-50%); /* ← translateYは不要に */
+    transform: translateX(-50%);
+    max-height: 100vh;
+    min-width: unset;
+    min-height: unset;
+    object-fit: unset;
   }
 
   .text-overlay {
