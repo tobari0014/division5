@@ -28,10 +28,14 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10; /* ボタンは前に出るけど背景は見える */
-  padding: 10px 16px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  z-index: 1000;
   background: transparent;
 }
+
 
 .back-btn {
   font-size: 1rem;
@@ -115,7 +119,7 @@ body {
   letter-spacing: -0.03em; /* ← 微調整で詰まりすぎず自然に */
 }
 
-.name-ja.aven {
+.name-ja.kana {
   font-size: 1.8em;
   letter-spacing: -0.07em;
 }
@@ -192,4 +196,14 @@ body {
     left: calc(50% - 500px);
     max-width: 80%;
   }
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: none; }
+}
+
+.text-overlay {
+  animation: fadeUp 0.6s ease-out both;
+  animation-delay: 0.1s;
 }

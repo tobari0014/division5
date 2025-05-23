@@ -45,10 +45,24 @@
       0% { transform: translateY(-100vh); }
       100% { transform: translateY(100vh); }
     }
+
+
+#indexUI {
+  animation: startup-glow 0.8s ease-out;
+}
+
+@keyframes startup-glow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
   </style>
 </head>
 <body>
-
+<div id="indexUI">
 <div class="boot-screen" id="bootScreen">
   <div class="boot-logo" id="bootLogo">
     <h1>FRACT</h1>
@@ -62,6 +76,7 @@
     <p>Identity confirmed: DIVISION <span style="color:#fc4d4d;">5</span> Operative</p>
     <p>Access Node: D5-ROOT / Clearance Level: <span style="color:#fc4d4d;">07</span> ...</p>
   </div>
+</div>
 </div>
 
 <script>
