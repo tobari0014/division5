@@ -359,3 +359,22 @@ body.is-mobile .menu-button {
   font-size: 1.2rem;
   padding: 18px 20px;
 }
+
+.system-link {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: #38bdf8;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.system-link a {
+  color: #38bdf8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.system-link a:hover {
+  color: #93c5fd;
+  text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+}
