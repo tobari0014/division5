@@ -8,6 +8,11 @@
   --font-japanese: 'Zen Kaku Gothic New', sans-serif;
 }
 
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 
 /* 共通フォント */
 body {
@@ -54,6 +59,7 @@ body {
   overflow: hidden;
   background-color: transparent;
   isolation: isolate;
+  height: 100dvh; /* アドレスバー除外した画面の高さを正確に取得 */
 }
 
 .profile-bg {
@@ -159,7 +165,8 @@ body {
   .profile-bg {
     width: 100%;
     height: auto;
-    position: absolute;
+    position: fixed;
+    object-fit: cover;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
