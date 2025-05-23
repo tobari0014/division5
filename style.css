@@ -330,7 +330,6 @@ html, body {
 .menu-button:hover {
   background: linear-gradient(120deg, #1e40af, #1e3a8a);
   color: #dbeafe;
-  letter-spacing: 0.5px;
 }
 
 /* タイトルの位置とサイズ調整（スマホ用） */
@@ -377,4 +376,31 @@ body.is-mobile .menu-button {
 .system-link a:hover {
   color: #93c5fd;
   text-shadow: 0 0 4px rgba(147, 197, 253, 0.5);
+}
+
+/* 機密表示スタイル */
+.menu-button.restricted {
+  border-color: #f87171;               /* 赤寄り */
+  color: #fca5a5;                       /* 淡い赤 */
+  position: relative;
+}
+
+.menu-button.restricted:hover {
+  background: rgba(248, 113, 113, 0.1); /* 警告色薄め */
+  box-shadow: 0 0 10px rgba(248, 113, 113, 0.4);
+}
+
+.menu-button.restricted .icon {
+  color: #f87171;
+}
+
+/* サブラベル：RESTRICTED */
+.restricted-tag {
+  position: absolute;
+  right: 12px;
+  bottom: 6px;
+  font-size: 0.7rem;
+  color: #f87171;
+  font-family: monospace;
+  opacity: 0.75;
 }

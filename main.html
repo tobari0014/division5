@@ -47,16 +47,38 @@ body::before {
     <img src="img/emblem.png" alt="Division 5 Emblem" class="emblem">
   </div>
 
-  <nav class="menu">
-    <div class="menu-buttons">
-      <div class="menu-button with-badge" onclick="location.href='operator.html'">
-        <span class="icon">▶</span> OPERATIVES <span class="badge">13</span>
-      </div>
-      <div class="menu-button"><span class="icon">▶</span> MISSION DATA</div>
-      <div class="menu-button"><span class="icon">▶</span> DIMENSIONAL LOGS</div>
-      <div class="menu-button"><span class="icon">▶</span> ANALYSIS MODULE</div>
+<nav class="menu">
+  <div class="menu-buttons">
+
+    <!-- OPERATIVES -->
+    <div class="menu-button with-badge" onclick="location.href='operator.html'">
+      <span class="icon">▶</span> OPERATIVES <span class="badge">13</span>
     </div>
-  </nav>
+
+    <!-- ANALYSIS MODULE -->
+    <div class="menu-button" onclick="location.href='analysis.html'">
+      <span class="icon">▶</span> ANALYSIS MODULE
+    </div>
+
+    <!-- FOUNDATION ARCHIVE -->
+    <div class="menu-button" onclick="location.href='foundation.html'">
+      <span class="icon">▶</span> FOUNDATION ARCHIVE
+    </div>
+
+    <!-- DIMENSIONAL LOGS（機密扱い） -->
+    <div class="menu-button restricted" onclick="location.href='dimensional.html'">
+      <span class="icon">✶</span> DIMENSIONAL LOGS
+      <span class="restricted-tag">RESTRICTED</span>
+    </div>
+
+    <!-- FLOOR MAP -->
+    <div class="menu-button" onclick="location.href='floor.html'">
+      <span class="icon">▶</span> D5 HQ FLOOR MAP
+    </div>
+
+  </div>
+</nav>
+
 
 <footer>
   <p class="system-log">[LOG] Access Node: FRACT-ROOT... <span class="blinker">_</span></p>

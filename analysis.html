@@ -1,0 +1,508 @@
+<!-- Final Fractalis Crystal Cards (self-contained) -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis Module - Crystal Archive</title>
+  <style>
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 16px;
+  z-index: 1000;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
+    body {
+      margin: 0;
+      padding-top: 100px;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .analysis-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+
+    .crystal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 0;
+    }
+
+    .crystal-card {
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, transparent 1px, transparent 3px),
+        #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #3b82f6;
+      padding: 16px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .crystal-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .crystal-label {
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      font-family: monospace;
+      border-radius: 2px;
+    }
+
+    .crystal-tags {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .danger-tag {
+      color: #f87171;
+      font-weight: bold;
+    }
+
+    .danger-tag.unknown {
+      color: #9ca3af;
+      font-style: italic;
+    }
+
+    .crystal-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .crystal-detail {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #94a3b8;
+      border-top: 1px dashed #334155;
+      padding-top: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .detail-button {
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid #60a5fa;
+      color: #60a5fa;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .detail-button:hover {
+      background: rgba(96, 165, 250, 0.1);
+    }
+
+  /* クラス別色 */
+.cr-class-r { border-left-color: #f1e092; }
+.cr-class-v { border-left-color: #f43f5e; }
+.cr-class-c { border-left-color: #3b82f6; }
+.cr-class-s { border-left-color: #a78bfa; } 
+/* クラスラベルカラー */
+.cr-class-c .crystal-label { color: #3b82f6; border-color: #3b82f6; }
+.cr-class-r .crystal-label { color: #f1e092; border-color: #f1e092; }
+.cr-class-v .crystal-label { color: #f43f5e; border-color: #f43f5e; }
+.cr-class-s .crystal-label { color: #a78bfa; border-color: #a78bfa; }
+
+  </style>
+</head>
+<body>
+
+
+<div class="nav-top">
+  <button class="back-btn" onclick="history.back()">≪</button>
+  <span class="nav-title">Analysis Module - Crystal Archive</span>
+</div>
+
+<style>
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+  background: #0f172a;
+}
+.nav-title {
+  font-size: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+.crystal-card.expanded {
+  background-color: #1e293b;
+  box-shadow: 0 0 0 1px #60a5fa;
+}
+
+</style>
+
+
+<div class="analysis-container">
+  <div class="crystal-grid">
+
+
+<!-- Generated Fractalis Crystal Cards -->
+
+<!-- [CRY-C-021] -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">[CRY-C-021]</div>
+  <div class="crystal-tags">
+    Type: Stabilized / Field Residue / <span class="danger-tag">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    安定した結晶構造を持ち、術式干渉に対して反応を示さない。調査時の手掛かりとして収集される。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 120 / Fragment Cycle 2</p>
+    <p><strong>発生理論：</strong>染縁収束時に残った微細構造が自然凝固したもの。</p>
+    
+    <p><strong>対応方針：</strong>手袋着用で回収可。標準ケース保管。</p>
+    <p><strong>外観特徴：</strong>灰青色の六面体結晶。親指の爪程度のサイズ。硬度高く傷がつきにくい。</p>
+  </div>
+</div>
+
+<!-- [CRY-C-022] -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">[CRY-C-022]</div>
+  <div class="crystal-tags">
+    Type: Low-React / Structural / <span class="danger-tag">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    装飾用に回収されたが、ごくわずかな感応反応が観測されたため研究対象に指定された。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 118 / Fragment Cycle 3</p>
+    <p><strong>発生理論：</strong>干渉波と土壌鉱物が融合し自然成長。</p>
+    
+    <p><strong>対応方針：</strong>低優先だが反応検査継続。</p>
+    <p><strong>外観特徴：</strong>濃灰色。多面体。表面に金属光沢がわずかに残る。</p>
+  </div>
+</div>
+
+<!-- [CRY-R-041] -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">[CRY-R-041]</div>
+  <div class="crystal-tags">
+    Type: Emotive / Trace Residue / <span class="danger-tag">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    特定個人の記憶が干渉したと思われる反応を示す。観測時、嗚咽のような音響残響あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 119 / Fragment Cycle 4</p>
+    <p><strong>発生理論：</strong>感情波の過剰集積による共鳴塊。</p>
+    <p><strong>通称：</strong>『ヌレア（Nurea）』</p>
+    <p><strong>対応方針：</strong>心理調整員の立会い必須。</p>
+    <p><strong>外観特徴：</strong>黒紫色の原石型。親指大。強く冷たい触感。光を反射せず、吸収する。</p>
+  </div>
+</div>
+
+<!-- [CRY-S-006] -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">[CRY-S-006]</div>
+  <div class="crystal-tags">
+    Type: Residual Fragment / <span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    調査終了区域にて偶発的に発見。風が通るときだけ微かに浮かぶ。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 121 / Fragment Cycle 1</p>
+    <p><strong>発生理論：</strong>染縁余波が微粒子として固定化。</p>
+    
+    <p><strong>対応方針：</strong>観測記録のみ。物理干渉禁止。</p>
+    <p><strong>外観特徴：</strong>砂粒のような粒子群。地面から1〜2cm上に漂う。角度によって淡く光る。</p>
+  </div>
+</div>
+
+<!-- [CRY-V-014] -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">[CRY-V-014]</div>
+  <div class="crystal-tags">
+    Type: Phase-Shifted Core / <span class="danger-tag">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    半径10m以内にいると“向きがわからなくなる”現象を引き起こす。磁場や座標系に異常。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 118 / Fragment Cycle 5</p>
+    <p><strong>発生理論：</strong>局所位相反転に伴う構造重複物の形成。</p>
+    
+    <p><strong>対応方針：</strong>封印班と共同観測。立入制限中。</p>
+    <p><strong>外観特徴：</strong>透明度の高い水晶型。高さ1.3m。中心に黒点が浮いて見える。</p>
+  </div>
+</div>
+
+<!-- [CRY-R-042] -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">[CRY-R-042]</div>
+  <div class="crystal-tags">
+    Type: Emotion-Imprint / <span class="danger-tag">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    結晶の近くで“誰かの手を握った記憶”を想起させる。複数の職員が類似の反応を報告。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 120 / Fragment Cycle 3</p>
+    <p><strong>発生理論：</strong>身体接触の記憶情報が凝固・共鳴した結果と推定。</p>
+    <p><strong>通称：</strong>『レーナ（Rena）』</p>
+    <p><strong>対応方針：</strong>観測制限区画指定。</p>
+    <p><strong>外観特徴：</strong>暗赤色の涙滴型。触れると体温がわずかに低下する。</p>
+  </div>
+</div>
+
+<!-- [CRY-C-023] -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">[CRY-C-023]</div>
+  <div class="crystal-tags">
+    Type: Standard Crystal / Non-React / <span class="danger-tag">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    反応性のない汎用結晶。構造が均質で、訓練用装置や儀式補助具に使用される。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 116 / Fragment Cycle 2</p>
+    <p><strong>発生理論：</strong>染縁閉鎖後の定常領域に自発的形成されたもの。</p>
+    
+    <p><strong>対応方針：</strong>再利用可。倉庫送付。</p>
+    <p><strong>外観特徴：</strong>乳白色の短柱型。手のひらに収まるサイズ。</p>
+  </div>
+</div>
+
+<!-- [CRY-S-007] -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">[CRY-S-007]</div>
+  <div class="crystal-tags">
+    Type: Afterglow Fragment / <span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    夕刻のみ観測される。結晶というより光の尾のように空間を漂う。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 121 / Fragment Cycle 2</p>
+    <p><strong>発生理論：</strong>観測魔術に感応する光情報残留と推定。</p>
+    
+    <p><strong>対応方針：</strong>時間帯を限定して観測継続。</p>
+    <p><strong>外観特徴：</strong>空間に5〜6cmの淡光線として浮かぶ。風に揺れるような挙動。</p>
+  </div>
+</div>
+
+<!-- [CRY-V-015] -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">[CRY-V-015]</div>
+  <div class="crystal-tags">
+    Type: Magnetic Distort / Core-Type / <span class="danger-tag">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    結晶周囲の方位磁針が反転を繰り返す。地図が使用不能になる局地現象を誘発。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 119 / Fragment Cycle 5</p>
+    <p><strong>発生理論：</strong>極性干渉による位相撹乱コアの具現。</p>
+    
+    <p><strong>対応方針：</strong>局所封鎖済。磁場遮断処置中。</p>
+    <p><strong>外観特徴：</strong>鋭く尖った黒結晶。透過性ゼロ。周囲に鉄粉反応あり。</p>
+  </div>
+</div>
+
+<!-- [CRY-R-043] -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">[CRY-R-043]</div>
+  <div class="crystal-tags">
+    Type: Mental Echo / <span class="danger-tag">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    発声せずとも“心の中で名を呼ばれた気がする”という被験者報告多数。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 118 / Fragment Cycle 6</p>
+    <p><strong>発生理論：</strong>名前に関する記憶感応体の疑い。</p>
+    <p><strong>通称：</strong>『シーナ（Sheena）』</p>
+    <p><strong>対応方針：</strong>接触試験中止中。</p>
+    <p><strong>外観特徴：</strong>濃灰の球状。滑らかだが冷たい。触ると軽い頭痛を訴える例あり。</p>
+  </div>
+</div>
+
+<!-- [CRY-C-024] -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">[CRY-C-024]</div>
+  <div class="crystal-tags">
+    Type: Craft-Grade / Commercial / <span class="danger-tag">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    市中に流出したとされる商業加工品。異界反応は無いが構造は純粋。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 115 / Fragment Cycle 5</p>
+    <p><strong>発生理論：</strong>流通由来。染縁生成ではない可能性。</p>
+    
+    <p><strong>対応方針：</strong>照合データベースへ登録。検体管理区へ送付。</p>
+    <p><strong>外観特徴：</strong>研磨された四角柱。装飾用カット痕あり。</p>
+  </div>
+</div>
+
+<!-- [CRY-S-008] -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">[CRY-S-008]</div>
+  <div class="crystal-tags">
+    Type: Silent Type / Undefined Mass / <span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    音を発しないが、極低周で空気振動を検知。結晶自体の“声”と推定される記録あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 120 / Fragment Cycle 4</p>
+    <p><strong>発生理論：</strong>音情報のみが凝縮された振動残響体。</p>
+    
+    <p><strong>対応方針：</strong>音響解析班連携中。可視波域外にて再確認予定。</p>
+    <p><strong>外観特徴：</strong>形状未定。一定間隔で淡く波紋が生じる。視認は稀。</p>
+  </div>
+</div>
+
+<!-- [CRY-V-016] -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">[CRY-V-016]</div>
+  <div class="crystal-tags">
+    Type: Corruptive Core / Echo-Fold / <span class="danger-tag">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    接触したデバイスが一時的に全ログを逆再生。過去データを巻き戻す干渉性あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 121 / Fragment Cycle 1</p>
+    <p><strong>発生理論：</strong>干渉現象が時間認識に作用したケース。</p>
+    
+    <p><strong>対応方針：</strong>五課内アクセス制限下で保管中。</p>
+    <p><strong>外観特徴：</strong>透明度高。結晶内部に“逆流する光の筋”が走る。</p>
+  </div>
+</div>
+
+<!-- [CRY-C-025] -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">[CRY-C-025]</div>
+  <div class="crystal-tags">
+    Type: Low-Class Residue / Non-Reactive / <span class="danger-tag">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    構造不明だが反応性がゼロ。観測上の“失敗物”と分類された。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 117 / Fragment Cycle 7</p>
+    <p><strong>発生理論：</strong>染縁の不活性周縁部で析出した可能性。</p>
+    
+    <p><strong>対応方針：</strong>破棄候補。保管期限内経過待ち。</p>
+    <p><strong>外観特徴：</strong>茶灰色の角張った形状。サイズ不揃い。光沢なし。</p>
+  </div>
+</div>
+
+<!-- [CRY-R-044] -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">[CRY-R-044]</div>
+  <div class="crystal-tags">
+    Type: Deep-Emotive / <span class="danger-tag">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    誰も近づいていないのに、保管庫に“濡れたような痕跡”を残していた。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 120 / Fragment Cycle 5</p>
+    <p><strong>発生理論：</strong>未定義の感情記録体と想定されるが未確定。</p>
+    <p><strong>通称：</strong>『ミーナ（Miina）』</p>
+    <p><strong>対応方針：</strong>通称『ミーナ（Miina）』。封鎖区画にて隔離中。</p>
+    <p><strong>外観特徴：</strong>灰青に近い。水滴型で不定形。時折、表面に曇りが広がる。</p>
+  </div>
+</div>
+
+
+      <!-- 追加カードここに増やす -->
+
+    </div>
+  </div>
+
+
+<script>
+function toggleDetail(button) {
+  const detail = button.nextElementSibling;
+  const expanded = detail.style.display === 'block';
+  detail.style.display = expanded ? 'none' : 'block';
+  button.textContent = expanded ? '▼ Expand' : '▲ Collapse';
+}
+</script>
+
+</body>
+</html>
