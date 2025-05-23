@@ -354,3 +354,8 @@ html, body {
 .menu-buttons {
   margin-top: 30px;           /* ロゴ下からメニューを少し詰める */
 }
+
+body.is-mobile .menu-button {
+  font-size: 1.2rem;
+  padding: 18px 20px;
+}

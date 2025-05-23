@@ -6,6 +6,23 @@
   <title>Main | FRACT System</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 600) {
+      document.body.classList.add('is-mobile');
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 600) {
+      document.body.classList.add('is-mobile');
+    } else {
+      document.body.classList.remove('is-mobile');
+    }
+  });
+</script>
+
 </head>
 <body>
 
