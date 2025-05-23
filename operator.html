@@ -14,14 +14,16 @@
       font-family: 'Orbitron', sans-serif;
       color: #e2e8f0;
     }
-    .nav-top {
-      display: flex;
-      position: sticky;
-      top: 0;
-      background: transparent;
-      padding: 10px 16px;
-      z-index: 100;
-    }
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px;
+  z-index: 1000;
+}
     .back-btn {
       font-size: 1rem;
       background: linear-gradient(120deg, #1e293b, #111827);
@@ -107,7 +109,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 12px;
+  padding-top: 0px; /* ← 戻るボタンの高さ分だけ下げる */
+  padding-bottom: 24px;
 }
 
 .emblem-img {
@@ -115,13 +118,6 @@
   width: auto;
 }
 
-.nav-top {
-  display: flex;
-  padding: 10px 16px;
-}
-.back-btn {
-  margin-left: 0; /* ← 左に余白を作らない */
-}
   </style>
 
 </head>
