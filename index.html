@@ -1,20 +1,24 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FRACT System | Division 5</title>
+  <title>Boot | FRACT System</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
     .auth-sequence p {
-      color: #78eea0;
-      font-size: 0.9rem;
+      color: #bbd6f5;
+      font-size: 1rem;
       opacity: 1;
       margin: 4px 0;
       letter-spacing: 0.05em;
       visibility: hidden;
       white-space: pre;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Rajdhani', sans-serif;
     }
 
     .scan-line {
@@ -45,104 +49,45 @@
       100% { transform: translateY(100vh); }
     }
   </style>
-  <!-- headタグに追加 -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- 起動画面 -->
 <div class="boot-screen" id="bootScreen">
   <div class="boot-logo" id="bootLogo">
-   <h1>FRACT</h1>
-   <p class="subtext">Fractalis Reactive Analysis</p>
-   <p class="subtext">Control Terminal System</p>
+    <h1>FRACT</h1>
+    <p class="subtext">Fractalis Reactive Analysis</p>
+    <p class="subtext">Control Terminal System</p>
   </div>
   <p class="login-prompt" id="authPrompt">TAP TO INITIATE</p>
   <div class="auth-sequence" id="authSequence" style="display: none;">
     <div class="scan-line"></div>
     <p>Scanning retina...</p>
     <p>Identity confirmed: DIVISION <span style="color:#fc4d4d;">5</span> Operative</p>
-    <p>Access Node: D5-ROOT / Clearance Level: <span style="color:#fc4d4d;">07</span> .........</p>
+    <p>Access Node: D5-ROOT / Clearance Level: <span style="color:#fc4d4d;">07</span> ...</p>
   </div>
-</div>
-
-<!-- 本編トップ画面 -->
-<div class="container" id="mainUI" style="display: none;">
-  <header>
-    <div class="title-block">
-      <h1>FRACT SYSTEM</h1>
-      <span class="version">v5.07</span>
-    </div>
-  </header>
-
-  <div class="logo-area">
-    <img src="img/emblem.png" alt="Division 5 Emblem" class="emblem">
-  </div>
-
-  <nav class="menu">
-    <div class="menu-buttons">
-<div class="menu-button with-badge" onclick="location.href='operator.html'">
-  <span class="icon">▶</span> OPERATIVES <span class="badge">13</span>
-</div>
-      <div class="menu-button">
-        <span class="icon">▶</span> MISSION DATA
-      </div>
-      <div class="menu-button">
-        <span class="icon">▶</span> DIMENSIONAL LOGS
-      </div>
-      <div class="menu-button">
-        <span class="icon">▶</span> ANALYSIS MODULE
-      </div>
-      <div class="menu-button">
-        <span class="icon">▶</span> TACTICAL NETWORK
-      </div>
-    </div>
-  </nav>
-
-  <footer>
-    <p class="system-log">[LOG] Access Node: FRACT-ROOT... <span class="blinker">_</span></p>
-  </footer>
 </div>
 
 <script>
 const bootScreen = document.getElementById("bootScreen");
-const mainUI = document.getElementById("mainUI");
 const authPrompt = document.getElementById("authPrompt");
 const authSequence = document.getElementById("authSequence");
 const bootLogo = document.getElementById("bootLogo");
 
-function showLinesOneByOne(lines, index) {
-  if (index < lines.length) {
-    lines[index].style.visibility = "visible";
-    setTimeout(() => showLinesOneByOne(lines, index + 1), 800);
-  }
-}
-
 bootScreen.addEventListener("click", () => {
   authPrompt.style.display = "none";
-  bootLogo.style.display = "none"; // ロゴを非表示
-
+  bootLogo.style.display = "none";
   const lines = authSequence.querySelectorAll("p");
-  setTimeout(() => {
-    lines[0].style.visibility = "visible";
-  }, 0);
 
-  setTimeout(() => {
-    lines[1].style.visibility = "visible";
-  }, 2000);
+  setTimeout(() => { lines[0].style.visibility = "visible"; }, 0);
+  setTimeout(() => { lines[1].style.visibility = "visible"; }, 2500);
+  setTimeout(() => { lines[2].style.visibility = "visible"; }, 3500);
 
-  setTimeout(() => {
-    lines[2].style.visibility = "visible";
-  }, 3100); authSequence.style.display = "block";
+  authSequence.style.display = "block";
   authSequence.classList.add("visible");
-  authSequence.style.visibility = "visible";
-  // 認証テキストは1行ずつ表示
+
   setTimeout(() => {
-    bootScreen.style.display = "none";
-    mainUI.style.display = "block";
-  }, 4000);
+    window.location.href = "main.html";
+  }, 4800);
 });
 </script>
 
