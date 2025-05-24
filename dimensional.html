@@ -24,6 +24,13 @@
   color: #f17979;
   font-weight: 400;
 }
+.nav-title-ja {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #f17979;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
 .back-btn {
   font-size: 1rem;
   background: linear-gradient(120deg, #1e293b, #111827);
@@ -51,6 +58,7 @@
       margin: 0 auto;
       padding: 80px 0 80px 0;
     }
+
     .world-log {
       border-radius: 16px;
       margin: 36px 14px;
@@ -238,7 +246,7 @@
 
 
 @media (max-width: 700px) {
-  .dimensional-container { padding: 72px 0 28px 0; }
+  .dimensional-container { padding: 72px 4px 28px 4px; }
   .world-log { margin: 12px 3px; }
   .log-header {
     padding: 14px 7px 7px 7px;
@@ -257,10 +265,10 @@
 <body>
 <div class="nav-top">
   <button class="back-btn" onclick="history.back()">≪</button>
-  <span class="nav-title">DIMENSIONAL LOGS</span>
+<span class="nav-title">
+  DIMENSIONAL LOGS <span class="nav-title-ja">｜異界接触記録</span>
+</span>
 </div>
-
-
 
   <div class="dimensional-container">
 
@@ -304,11 +312,11 @@
   </div>
 </div>
 
-<!-- 魔物世界 V-Ω（Nocturnis） -->
+<!-- 魔物世界 V-ω（Nocturnis） -->
 <div class="world-log vomega">
   <div class="log-header with-filter" style="background-image: url('img/v-omega-header.jpg');">
     <div class="world-header-text">
-      <span class="world-code">V-Ω</span>
+      <span class="world-code">V-ω</span>
       <span class="world-name">魔物世界</span>
       <span class="world-alias">[“Nocturnis”]</span>
     </div>

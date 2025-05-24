@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>D5 HQ FLOOR MAP | 五課本部フロアマップ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+  background: #191b23;
+}
+.nav-title {
+  font-size: 1.3rem;
+  font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
+  color: #79c5f1;
+  font-weight: 400;
+}
+.nav-title-ja {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #79c5f1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
+
+    body {
+      background: #181b22;
+      color: #e5e7eb;
+      font-family: 'Segoe UI', 'Noto Sans JP', 'メイリオ', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .floor-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 86px 24px 50px 24px;
+      box-sizing: border-box;
+    }
+    .section-title {
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      font-size: 1.14rem;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      color: #61c0ed;
+      margin: 34px 0 14px 0;
+    }
+    .section-title-ja {
+      font-family: 'Noto Sans JP', 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      color: #99e3fa;
+      margin-left: 10px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .section-content {
+      background: #222735;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px 0 rgba(32,36,52,0.13);
+      padding: 26px 20px 20px 20px;
+      margin-bottom: 36px;
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+    .floor-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0 0;
+    }
+    .floor-list li {
+      margin-bottom: 28px;
+      background: #262a3b;
+      border-radius: 8px;
+      box-shadow: 0 1px 7px #191a27b8;
+      padding: 18px 18px 15px 18px;
+      border-left: 4px solid #61c0ed;
+      transition: box-shadow 0.2s;
+    }
+    .floor-list li:hover {
+      box-shadow: 0 2px 18px 0 #61c0ed33;
+    }
+    .floor-list b {
+      font-size: 1.07em;
+      color: #ffe28c;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .floor-desc {
+      display: block;
+      margin-top: 7px;
+      font-size: 0.97em;
+      color: #b8d1f1;
+      line-height: 1.68;
+    }
+    /* レスポンシブ対応 */
+    @media (max-width: 600px) {
+      .floor-container { padding: 68px 7px 26px 7px; }
+      .section-content { padding: 16px 6px 12px 6px; }
+      .floor-list li { padding: 12px 7px 10px 12px; margin-bottom: 18px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-top">
+    <button class="back-btn" onclick="history.back()">≪</button>
+    <span class="nav-title">
+      D5 HQ FLOOR MAP
+      <span class="nav-title-ja">｜五課本部フロアマップ</span>
+    </span>
+  </div>
+  <div class="floor-container">
+    <div class="hq-desc">
+      第五特異災害対策課（五課）の本部ビルは、首都圏の一角に位置する地上6階・地下1階建ての専用施設であり、少数精鋭による即応性と機密性を両立する設計が特徴です。<br>
+      フロアごとに各班・機能部門が集約され、通常時から緊急時まで一貫したオペレーションが可能となっています。セキュリティはCPO内でも最高レベルで、各階へのアクセスには個別認証が必要です。
+    </div>
+    <div class="section-title">フロア構成</div>
+    <ul class="floor-list">
+      <li>
+        <b>6F｜指令室・局長室</b>
+        <span class="floor-desc">
+          本部の中枢フロア。緊急時の指令発信や全体統括、局長の執務・ブリーフィングに使用される。高度なセキュリティと通信設備が集中しており、原則立入制限付き。
+        </span>
+      </li>
+      <li>
+        <b>5F｜対策本部・会議室</b>
+        <span class="floor-desc">
+          災害対策の総合指揮や全体会議、班ごとの打ち合わせが行われる。大規模災害時には臨時作戦本部として24時間稼働することも。
+        </span>
+      </li>
+      <li>
+        <b>4F｜戦闘班・調査班 室</b>
+        <span class="floor-desc">
+          戦闘班・調査班の活動拠点。日常的な訓練や装備点検、出動準備が主。緊急時は現場チームの迅速な出撃対応に利用される。
+        </span>
+      </li>
+      <li>
+        <b>3F｜解析班・医療班・記録班 室</b>
+        <span class="floor-desc">
+          解析班によるデータ解析・結晶分析、医療班による治療・健康管理、記録班の情報整理が行われるフロア。調査後の解析作業や被災者の初期処置もここで実施される。
+        </span>
+      </li>
+      <li>
+        <b>2F｜技術室・装備庫・休憩室</b>
+        <span class="floor-desc">
+          装備開発や点検、物資管理、隊員のリフレッシュのための休憩スペース。通常時は整備・調整作業が多く、緊急時は即時配備・補給拠点となる。
+        </span>
+      </li>
+      <li>
+        <b>1F｜受付・警備室</b>
+        <span class="floor-desc">
+          一般来訪者・業者対応、警備・監視機能を兼ねるフロア。通常は立ち入り制限が最も緩いが、非常時は一時封鎖にも対応。
+        </span>
+      </li>
+      <li>
+        <b>B1F｜収容設備・緊急対応区画</b>
+        <span class="floor-desc">
+          染縁現象や異常存在の一時収容・隔離、災害時の緊急対処設備が集約。セキュリティが最も厳重で、立ち入りは許可者のみに限定。
+        </span>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!-- Final Fractalis Crystal Cards (self-contained) -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis Module - Crystal Archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+  background: #0f172a;
+}
+.nav-title {
+  font-size: 1.3rem;
+  font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
+  color: #79c5f1;
+  font-weight: 400;
+}
+.nav-title-ja {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #79c5f1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
+    body {
+      margin: 0;
+      padding-top: 100px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .analysis-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+
+    .crystal-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-top: 0;
+    }
+
+    .crystal-card {
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, transparent 1px, transparent 3px),
+        #1e293b;
+      border: 1px solid #334155;
+      border-left: 4px solid #3b82f6;
+      padding: 16px;
+      border-radius: 8px;
+      color: #e2e8f0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+
+    .crystal-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .crystal-label {
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      font-size: 0.8rem;
+      padding: 2px 6px;
+      margin-bottom: 4px;
+      font-family: monospace;
+      border-radius: 2px;
+      font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
+    }
+
+    .crystal-tags {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .danger-tag {
+  font-weight: bold;
+  font-size: 0.95em;
+}
+.danger-tag.low {
+  color: #3b82f6;
+}
+.danger-tag.high,
+.danger-tag.critical {
+  color: #f87171;
+}
+.danger-tag.unknown {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+    .crystal-desc {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .crystal-detail {
+      display: none;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #94a3b8;
+      border-top: 1px dashed #334155;
+      padding-top: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .detail-button {
+      margin-top: 12px;
+      background: transparent;
+      border: 1px solid #60a5fa;
+      color: #60a5fa;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: 'Segoe UI', sans-serif;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .detail-button:hover {
+      background: rgba(96, 165, 250, 0.1);
+    }
+
+  /* クラス別色 */
+.cr-class-r { border-left-color: #f1e092; }
+.cr-class-v { border-left-color: #f43f5e; }
+.cr-class-c { border-left-color: #3b82f6; }
+.cr-class-s { border-left-color: #a78bfa; } 
+/* クラスラベルカラー */
+.cr-class-c .crystal-label { color: #3b82f6; border-color: #3b82f6; }
+.cr-class-r .crystal-label { color: #f1e092; border-color: #f1e092; }
+.cr-class-v .crystal-label { color: #f43f5e; border-color: #f43f5e; }
+.cr-class-s .crystal-label { color: #a78bfa; border-color: #a78bfa; }
+.crystal-card.expanded {
+  background-color: #1e293b;
+  box-shadow: 0 0 0 1px #60a5fa;
+}
+
+  </style>
+</head>
+<body>
+
+
+<div class="nav-top">
+  <button class="back-btn" onclick="history.back()">≪</button>
+<span class="nav-title">
+  CRYSTAL ARCHIVE <span class="nav-title-ja">｜結晶アーカイブ</span>
+</span>
+</div>
+
+<div class="analysis-container">
+  <div class="crystal-grid">
+
+
+<!-- Generated Fractalis Crystal Cards -->
+
+<!-- Class-S | 起点結晶 -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">CRY-S-021</div>
+  <div class="crystal-tags">
+    Type: Origin Core / <strong>DANGER: </strong><span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    染縁終息の瞬間、発生座標で高い音を立てて出現。観測者は「世界の裂け目が“閉じた証拠”」と報告。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 1</p>
+    <p><strong>発生理論：</strong>染縁初期亀裂点が、最終収束と同時に現実へ固着・物質化。</p>
+    <p><strong>対応方針：</strong>現場座標のまま保存。移動不可。</p>
+    <p><strong>外観特徴：</strong>中央に空洞を持つ多面体結晶。内部で微かな音響残響を検知。</p>
+  </div>
+</div>
+
+<!-- 変質結晶 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-062</div>
+  <div class="crystal-tags">
+    Type: Phase Rift / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    空間が局所的に捻じ曲げられ、観測時に“複数の影”が出現。実体化後も物理法則の異常が持続。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 122 / Fragment Cycle 7</p>
+    <p><strong>発生理論：</strong>異界法則の侵蝕点で空間断裂が固定化。</p>
+    <p><strong>対応方針：</strong>即時封鎖・観測班以外接近禁止。</p>
+    <p><strong>外観特徴：</strong>鋭角的な水晶塔。透過率高く、内部に歪んだ影が流動。</p>
+  </div>
+</div>
+
+<!-- 記憶結晶（人間の祈り） -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-091</div>
+  <div class="crystal-tags">
+    Type: Human Hope / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    災害の只中で消えた住民の“祈り”が残った。観測者は「温かな光を感じた」と記録。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 122 / Fragment Cycle 2</p>
+    <p><strong>発生理論：</strong>染縁災害時の強い“祈念”が残留共鳴し物質化。</p>
+    <p><strong>通称：</strong>ユリナ（Yurina）</p>
+    <p><strong>対応方針：</strong>感応班同行で観測。心理ケア対象。</p>
+    <p><strong>外観特徴：</strong>淡い金色の原石型。表面に細かい光点が浮かぶ。</p>
+  </div>
+</div>
+
+<!-- 記憶結晶（魔物の敵意） -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-092</div>
+  <div class="crystal-tags">
+    Type: Hostile Echo / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    魔物の本能的な敵意が局所で凝縮。接近した調査員が全員悪夢を体験し、精神的疲労を報告。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 3</p>
+    <p><strong>発生理論：</strong>異界由来の衝動が情報圧力として結晶化。</p>
+    <p><strong>対応方針：</strong>命名・直接接触禁止。保護観測のみ。</p>
+    <p><strong>外観特徴：</strong>漆黒の塊。不規則な脈動を検知。触れると熱を持つ。</p>
+  </div>
+</div>
+
+<!-- 変質結晶（磁場歪曲） -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-063</div>
+  <div class="crystal-tags">
+    Type: Magnetic Distort / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    周囲の磁場が異常振動し、コンパスや電子機器が使用不能に。地形が微かに“揺れる”。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 6</p>
+    <p><strong>発生理論：</strong>異界磁性反応点が構造的に凝縮したもの。</p>
+    <p><strong>対応方針：</strong>電磁シールド下での保管必須。</p>
+    <p><strong>外観特徴：</strong>灰銀色。細長い結晶軸が複数交差。</p>
+  </div>
+</div>
+
+<!-- 一般結晶（装飾流通） -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-071</div>
+  <div class="crystal-tags">
+    Type: Stabilized / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    工業研磨され装飾品として流通。危険性はないが、微弱な異界反応は持続している。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 121 / Fragment Cycle 9</p>
+    <p><strong>発生理論：</strong>安定化領域で析出。現地回収後加工。</p>
+    <p><strong>対応方針：</strong>一般流通可。記録班管理。</p>
+    <p><strong>外観特徴：</strong>半透明・淡青色。六面体カット。</p>
+  </div>
+</div>
+
+<!-- 一般結晶（無反応） -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-072</div>
+  <div class="crystal-tags">
+    Type: Non-React / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    干渉波反応なし。サンプル調査でも変化記録ゼロ。極めて安定した無反応結晶。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 4</p>
+    <p><strong>発生理論：</strong>染縁終了時の沈殿構造体。</p>
+    <p><strong>対応方針：</strong>訓練用、機器校正用に利用。</p>
+    <p><strong>外観特徴：</strong>乳白色。丸みを帯びた多面体。</p>
+  </div>
+</div>
+
+<!-- 記憶結晶（精霊模倣） -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-093</div>
+  <div class="crystal-tags">
+    Type: Fairy Mimicry / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    精霊的存在による“人間模倣”が検知された記録体。観測者に唐突な“喜び”や“いたずら心”が伝染する。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 122 / Fragment Cycle 8</p>
+    <p><strong>発生理論：</strong>異界精霊の感情情報が模倣共鳴し定着。</p>
+    <p><strong>対応方針：</strong>長時間観測禁止。心理記録提出必須。</p>
+    <p><strong>外観特徴：</strong>虹色の球体結晶。常に微光がゆらめく。</p>
+  </div>
+</div>
+
+<!-- 変質結晶（重力異常） -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-064</div>
+  <div class="crystal-tags">
+    Type: Gravity Bend / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    局所重力が歪み、周囲の物体が不規則に浮遊。観測班が即時退避した記録あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 7</p>
+    <p><strong>発生理論：</strong>空間重力波の異常振幅点で結晶化。</p>
+    <p><strong>対応方針：</strong>観測用重力制御フィールド内にて保管。</p>
+    <p><strong>外観特徴：</strong>複雑に湾曲した水晶片。断面が空間を歪めて見える。</p>
+  </div>
+</div>
+
+<!-- 一般結晶（感応微反応） -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-073</div>
+  <div class="crystal-tags">
+    Type: Low-Resonance / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    微弱な感応反応のみ観測された低反応結晶。装飾品や識別具への利用例多し。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 10</p>
+    <p><strong>発生理論：</strong>沈降時に微量の異界波を帯びたまま凝固。</p>
+    <p><strong>対応方針：</strong>標準保管。適宜使用可。</p>
+    <p><strong>外観特徴：</strong>透明感のある薄青色。小型結晶。</p>
+  </div>
+</div>
+
+<!-- Class-V | 時間断層 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-065</div>
+  <div class="crystal-tags">
+    Type: Temporal Fault / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    時間の流れが断続的に“跳ぶ”局所現象を誘発。物体の劣化や腐食に異常が出る。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 12</p>
+    <p><strong>発生理論：</strong>染縁干渉点で時間因果律の破断が生じ、固定化。</p>
+    <p><strong>対応方針：</strong>即時封鎖。長時間滞在禁止。</p>
+    <p><strong>外観特徴：</strong>細長いひび割れ構造の結晶。断面から微かな時差ノイズが出る。</p>
+  </div>
+</div>
+
+<!-- Class-R | 魔術存在の残滓 -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-094</div>
+  <div class="crystal-tags">
+    Type: Arcane Trace / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    魔術的構造が物質化した痕跡。観測時に記号が浮かび上がり、術者の一部が混乱状態に陥った。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 122 / Fragment Cycle 15</p>
+    <p><strong>発生理論：</strong>高次魔術の“演算残滓”が結晶化。</p>
+    <p><strong>対応方針：</strong>魔術防護装備下でのみ観測可。</p>
+    <p><strong>外観特徴：</strong>半透明の多角柱。表面に幾何学模様が絶えず移動する。</p>
+  </div>
+</div>
+
+<!-- Class-C | 流通用サンプル -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-074</div>
+  <div class="crystal-tags">
+    Type: Commercial Sample / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    市場流通用に規格化されたサンプル結晶。強度と透明度が重視され、異界反応は検出されていない。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 14</p>
+    <p><strong>発生理論：</strong>人工管理区域内で自然析出したものを回収・加工。</p>
+    <p><strong>対応方針：</strong>品質検査済み。流通許可。</p>
+    <p><strong>外観特徴：</strong>無色透明・六面体。刻印番号入り。</p>
+  </div>
+</div>
+
+<!-- Class-R | 精霊の“遊び” -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-095</div>
+  <div class="crystal-tags">
+    Type: Sprite Play / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    観測時、検体の周囲に小さな光や風の“戯れ”が発生。触れた者が短時間だけ笑い出す事例あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 13</p>
+    <p><strong>発生理論：</strong>精霊的存在の模倣・遊戯衝動が結晶化。</p>
+    <p><strong>対応方針：</strong>心理班観測。強い感応者は接触禁止。</p>
+    <p><strong>外観特徴：</strong>虹色の薄片。動かすと鈴のような音が出る。</p>
+  </div>
+</div>
+
+<!-- Class-C | 安定構造体 -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-075</div>
+  <div class="crystal-tags">
+    Type: Core Residue / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    染縁発生地の中心部に残留。極めて高密度・高硬度で、他の結晶の生成を阻害する性質あり。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 16</p>
+    <p><strong>発生理論：</strong>核周囲の安定沈降物質。</p>
+    <p><strong>対応方針：</strong>工学研究用にサンプル提出。</p>
+    <p><strong>外観特徴：</strong>灰色で光沢強い立方体。非常に重い。</p>
+  </div>
+</div>
+
+<!-- Class-V | 空間重複結晶 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-066</div>
+  <div class="crystal-tags">
+    Type: Spatial Overlay / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    二重写しのような空間が局所的に発生。結晶内部で“同じものが重なって見える”。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 17</p>
+    <p><strong>発生理論：</strong>空間座標の重複領域が物質化した副産物。</p>
+    <p><strong>対応方針：</strong>座標固定。周辺への拡散防止。</p>
+    <p><strong>外観特徴：</strong>半透明の層状構造体。透かすと内部が二重に見える。</p>
+  </div>
+</div>
+
+<!-- Class-S | 起点結晶/例外例 -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">CRY-S-022</div>
+  <div class="crystal-tags">
+    Type: Origin Core / <strong>DANGER: </strong><span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    発生点にて“二つの世界の重なり目”が物質化。回収時、観測班全員に「記憶違い」の報告が生じた。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 18</p>
+    <p><strong>発生理論：</strong>染縁コアの例外的多重重なりによる。</p>
+    <p><strong>対応方針：</strong>封鎖保管。情報機器接続禁止。</p>
+    <p><strong>外観特徴：</strong>中心が2重に割れた球状。見る角度で形状が変化。</p>
+  </div>
+</div>
+
+<!-- Class-R | “声”の残響 -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-096</div>
+  <div class="crystal-tags">
+    Type: Residual Voice / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    観測時に“誰もいないのに呼びかけられる”幻聴。録音には一切記録されない。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 19</p>
+    <p><strong>発生理論：</strong>干渉情報の一部が音波構造のみ残留。</p>
+    <p><strong>対応方針：</strong>録音・再生機器の持込禁止。</p>
+    <p><strong>外観特徴：</strong>細長い螺旋形。薄く発光。</p>
+  </div>
+</div>
+
+<!-- Class-C | 微量反応型 -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-076</div>
+  <div class="crystal-tags">
+    Type: Micro-Reactive / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    ごく微弱な魔力干渉を維持。特定状況下でのみ発光反応を示すサンプル。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 20</p>
+    <p><strong>発生理論：</strong>沈降時に微細な魔力素子が残留。</p>
+    <p><strong>対応方針：</strong>研究用に保管。一般流通不可。</p>
+    <p><strong>外観特徴：</strong>淡い青緑色。夜間のみ光る。</p>
+  </div>
+</div>
+
+<!-- Class-V | 異常音発生 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-067</div>
+  <div class="crystal-tags">
+    Type: Sonic Distortion / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    周囲で原因不明の異音が連続発生。結晶自体は無音だが、音響記録に干渉する。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 123 / Fragment Cycle 21</p>
+    <p><strong>発生理論：</strong>異界音波領域の残留干渉物。</p>
+    <p><strong>対応方針：</strong>音響班連携下で監視。調査記録は紙媒体限定。</p>
+    <p><strong>外観特徴：</strong>無色透明・柱状。光の屈折率が周囲と大きく異なる。</p>
+  </div>
+</div>
+
+<!-- Class-V | 温度反転結晶 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-068</div>
+  <div class="crystal-tags">
+    Type: Thermal Inverse / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    周囲の温度が一定周期で極端に上下反転。物質の性質や状態も一時的に入れ替わる異常現象を誘発。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 3</p>
+    <p><strong>発生理論：</strong>異界熱流と現実熱量の逆位相重複。</p>
+    <p><strong>対応方針：</strong>密閉隔離。観測班も交代制で短時間滞在。</p>
+    <p><strong>外観特徴：</strong>半透明の板状結晶。表面が常に結露または霜を帯びている。</p>
+  </div>
+</div>
+
+<!-- Class-R | 独白記憶結晶（通称あり） -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-097</div>
+  <div class="crystal-tags">
+    Type: Human Reminiscence / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    接触時に「自分が自分に語りかける」幻聴。記録班員はこれを“独白結晶”と呼ぶ。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 5</p>
+    <p><strong>発生理論：</strong>染縁の消失時、最後まで現場に残った人の“自我”の残滓。</p>
+    <p><strong>通称：</strong>“ヒトリゴト（Hitorigoto）”</p>
+    <p><strong>対応方針：</strong>感応班と心理班で共同観測。定期検診必須。</p>
+    <p><strong>外観特徴：</strong>淡黄〜透明の涙型結晶。振ると音が響く。</p>
+  </div>
+</div>
+
+<!-- Class-C | 浸蝕安定結晶 -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-077</div>
+  <div class="crystal-tags">
+    Type: Corrosive Stable / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    初期は緩やかな腐食性を持つが、短時間で完全に無害化・安定化する。希少な二相性。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 6</p>
+    <p><strong>発生理論：</strong>一時的な異界波干渉物の沈降安定例。</p>
+    <p><strong>対応方針：</strong>初期接触後48hは専用区画で観察。</p>
+    <p><strong>外観特徴：</strong>青緑色。時間経過で色味が徐々に薄くなる。</p>
+  </div>
+</div>
+
+<!-- Class-S | 螺旋起点結晶 -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">CRY-S-023</div>
+  <div class="crystal-tags">
+    Type: Origin Core / <strong>DANGER: </strong><span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    染縁発生点で、閉じた瞬間に回転しながら出現。中心軸に“異常な奥行き”を持つ。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 1</p>
+    <p><strong>発生理論：</strong>裂け目のねじれ方向が物質化に影響。</p>
+    <p><strong>対応方針：</strong>現場で固定保管。観測班交代制。</p>
+    <p><strong>外観特徴：</strong>螺旋状結晶。中央に影が常に渦巻いている。</p>
+  </div>
+</div>
+
+<!-- Class-V | 瞬間静止結晶 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-069</div>
+  <div class="crystal-tags">
+    Type: Temporal Stasis / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    一定範囲で“時間が止まる”現象が周期的に発生。生体が巻き込まれると一時的に意識喪失。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 7</p>
+    <p><strong>発生理論：</strong>異界時空領域の切断点が結晶化。</p>
+    <p><strong>対応方針：</strong>専用観測フィールド内で封鎖保管。</p>
+    <p><strong>外観特徴：</strong>完全無色透明。中空の筒状。</p>
+  </div>
+</div>
+
+<!-- Class-R | 精霊の孤独模倣 -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-098</div>
+  <div class="crystal-tags">
+    Type: Fairy Loneliness / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    観測時に“悲しい旋律”が頭に流れる。人間の孤独を精霊が模倣した痕跡。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 8</p>
+    <p><strong>発生理論：</strong>精霊存在が周囲の感情情報を記録・反映。</p>
+    <p><strong>対応方針：</strong>心理班観測。感情安定剤常備。</p>
+    <p><strong>外観特徴：</strong>虹色半透明。共鳴時に微光を発する。</p>
+  </div>
+</div>
+
+<!-- Class-C | 結晶苗床サンプル -->
+<div class="crystal-card cr-class-c">
+  <span class="crystal-label">Class-C</span>
+  <div class="crystal-title">CRY-C-078</div>
+  <div class="crystal-tags">
+    Type: Seeding Sample / <strong>DANGER: </strong><span class="danger-tag low">LOW</span>
+  </div>
+  <div class="crystal-desc">
+    結晶の成長・分裂の起点として研究用に用いられるサンプル。再現性は低い。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 10</p>
+    <p><strong>発生理論：</strong>染縁沈降構造の一部が二次成長。</p>
+    <p><strong>対応方針：</strong>隔離研究室管理。一般公開禁止。</p>
+    <p><strong>外観特徴：</strong>乳白色。表面に細かい突起。</p>
+  </div>
+</div>
+
+<!-- Class-V | 光波撹乱結晶 -->
+<div class="crystal-card cr-class-v">
+  <span class="crystal-label">Class-V</span>
+  <div class="crystal-title">CRY-V-070</div>
+  <div class="crystal-tags">
+    Type: Light Distortion / <strong>DANGER: </strong><span class="danger-tag critical">CRITICAL</span>
+  </div>
+  <div class="crystal-desc">
+    周囲の光が歪んで“幻覚”を生じる。結晶自体が微弱に発光し、直接観測は危険。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 12</p>
+    <p><strong>発生理論：</strong>異界光波構造との干渉領域で生成。</p>
+    <p><strong>対応方針：</strong>遮光管理。観測班は保護具必須。</p>
+    <p><strong>外観特徴：</strong>細長いプリズム状。色が常に揺らぐ。</p>
+  </div>
+</div>
+
+<!-- Class-S | 虚像起点結晶 -->
+<div class="crystal-card cr-class-s">
+  <span class="crystal-label">Class-S</span>
+  <div class="crystal-title">CRY-S-024</div>
+  <div class="crystal-tags">
+    Type: Origin Core / <strong>DANGER: </strong><span class="danger-tag unknown">UNCLASSIFIED</span>
+  </div>
+  <div class="crystal-desc">
+    発生座標に実体のない影が残る。結晶自体はごく小さく、“影の形”のみ現実に刻まれる。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 13</p>
+    <p><strong>発生理論：</strong>染縁コアと空間像のズレが定着。</p>
+    <p><strong>対応方針：</strong>現地封鎖。結晶と影はセットで管理。</p>
+    <p><strong>外観特徴：</strong>実体は黒い砂粒。影だけ大きく映る。</p>
+  </div>
+</div>
+
+<!-- Class-R | 魔物共鳴結晶 -->
+<div class="crystal-card cr-class-r">
+  <span class="crystal-label">Class-R</span>
+  <div class="crystal-title">CRY-R-099</div>
+  <div class="crystal-tags">
+    Type: Monster Resonance / <strong>DANGER: </strong><span class="danger-tag high">HIGH</span>
+  </div>
+  <div class="crystal-desc">
+    複数個体の“怒りと飢え”が混線共鳴。観測者は無力感や恐怖症状を訴える。
+  </div>
+  <button class="detail-button" onclick="toggleDetail(this)">▼ Expand</button>
+  <div class="crystal-detail">
+    <p><strong>記録時刻：</strong>Link-Year 124 / Fragment Cycle 14</p>
+    <p><strong>発生理論：</strong>複数異界魔物の感応圧が混在・反応。</p>
+    <p><strong>対応方針：</strong>観測班のみ管理。警戒区域指定。</p>
+    <p><strong>外観特徴：</strong>赤黒い不規則結晶。内部にうごめく影。</p>
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+
+
+<script>
+function toggleDetail(button) {
+  const detail = button.nextElementSibling;
+  const expanded = detail.style.display === 'block';
+  detail.style.display = expanded ? 'none' : 'block';
+  button.textContent = expanded ? '▼ Expand' : '▲ Collapse';
+}
+</script>
+
+</body>
+</html>

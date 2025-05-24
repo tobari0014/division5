@@ -15,31 +15,45 @@
       color: #e2e8f0;
     }
     
-    .nav-top {
-     position: fixed;
-      top: 0;
-      left: 0;
-     width: 100%;
-     display: flex;
-     justify-content: flex-start;
-     padding: 12px 16px;
-      z-index: 1000;
-    }
-    .back-btn {
-      font-size: 1rem;
-      background: linear-gradient(120deg, #1e293b, #111827);
-      color: #dbeafe;
-      font-weight: bold;
-      border: 1px solid #3b82f6;
-      border-radius: 6px;
-      padding: 8px 14px;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      transition: background 0.2s ease;
-    }
-    .back-btn:hover {
-      background: #1e40af;
-    }
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+}
+.nav-title {
+  font-size: 1.3rem;
+  font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
+  color: #79c5f1;
+  font-weight: 400;
+}
+.nav-title-ja {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.1rem;
+  color: #79c5f1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
 
     .page-title {
       text-align: center;
@@ -136,7 +150,7 @@
 <body>
 <!-- 戻るボタン -->
 <div class="nav-top">
-  <button onclick="location.href='main.html'" class="back-btn">≪</button>
+  <button class="back-btn" onclick="history.back()">≪</button>
 </div>
 
 <!-- 上部エンブレム -->
