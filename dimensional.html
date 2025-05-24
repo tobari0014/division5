@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DIMENSIONAL LOGS | Central Public Order</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap" rel="stylesheet">
   <style>
 .nav-top {
   position: fixed;
@@ -18,10 +19,10 @@
   background: #151a20;
 }
 .nav-title {
-  font-size: 1rem;
-  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
   color: #f17979;
-  font-weight: bold;
+  font-weight: 400;
 }
 .back-btn {
   font-size: 1rem;
@@ -42,13 +43,13 @@
     body {
       background: #151a20;
       color: #e0e7ef;
-      font-family: 'Orbitron', 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 0; padding: 0;
     }
     .dimensional-container {
       max-width: 850px;
       margin: 0 auto;
-      padding: 50px 0 80px 0;
+      padding: 80px 0 80px 0;
     }
     .world-log {
       border-radius: 16px;
@@ -84,10 +85,6 @@
   background-position: center;
   /* 背景画像は style属性や追加クラスで指定 */
 }
-@media (max-width: 700px) {
-  .log-header { min-height: 70px; }
-}
-
     .world-header-text {
       position: relative;
       z-index: 2;
@@ -132,6 +129,34 @@
       line-height: 1.65;
       font-family: 'Segoe UI', 'Noto Sans JP', sans-serif;
     }
+
+
+.log-description h4 {
+  position: relative;
+  font-size: 1.09rem;
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 900;
+  color: #e5e7eb;          /* 淡グレー */
+  letter-spacing: 0.11em;
+  margin: 32px 0 9px 0;
+  padding-left: 16px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px #232642b0;
+}
+.log-description h4::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 1.35em;
+  background: #fc4d4d;
+  border-radius: 2px;
+  box-shadow: 0 0 8px 3px #fc4d4dbb, 0 0 3px #fff2;
+  opacity: 0.92;
+}
+
     .log-properties {
       margin-top: 14px;
       margin-bottom: 12px;
@@ -160,14 +185,73 @@
       color: #a5b4fc;
       font-size: 1.06em;
     }
-    @media (max-width: 700px) {
-      .dimensional-container { padding: 72px 0 28px 0; }
-      .world-log { margin: 12px 3px; }
-      .log-header { padding: 14px 7px 7px 7px; min-height: 74px;}
-      .log-description, .log-properties, .log-notes {
-        margin-left: 9px; margin-right: 9px;
-      }
-    }
+
+.access-warning {
+  background: none;           /* 完全透明 */
+  color: #fff;
+  font-size: 1.04rem;
+  font-family: 'Rajdhani', sans-serif;
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  padding: 13px 0 11px 0;
+  margin: 0 0 20px 0;
+  border-top: 2.5px solid #fc4d4d;
+  border-bottom: 2.5px solid #fc4d4d;
+  box-shadow: none;
+  text-shadow: 0 1px 5px #10142533;
+  user-select: none;
+}
+.access-warning .clearance-level {
+  color: #fc4d4d;      /* 赤でワンポイント */
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+
+.log-header.with-filter {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  /* ::beforeでオーバーレイ追加 */
+}
+.log-header.with-filter::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 46%;
+  background: linear-gradient(
+    90deg,
+    rgba(24, 26, 29, 0.76) 0%,    /* ほぼ黒 #181a1d */
+    rgba(24, 26, 29, 0.26) 80%,
+    rgba(24, 26, 29, 0.01) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+.world-header-text {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 6px #181e29cc, 0 0 6px #fff8;
+}
+
+
+
+@media (max-width: 700px) {
+  .dimensional-container { padding: 72px 0 28px 0; }
+  .world-log { margin: 12px 3px; }
+  .log-header {
+    padding: 14px 7px 7px 7px;
+    min-height: 74px; /* 70と74が混ざってる場合は大きい方でOK */
+  }
+  .world-header-text {
+    margin-left: 10px; /* お好みで8〜14px程度 */
+  }
+  .log-description, .log-properties, .log-notes {
+    margin-left: 9px; margin-right: 9px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -176,137 +260,174 @@
   <span class="nav-title">DIMENSIONAL LOGS</span>
 </div>
 
+
+
   <div class="dimensional-container">
 
-    <!-- 魔術世界 L-α -->
-    <div class="world-log lalpha">
-      <div class="log-header" style="background-image: url('img/l-alpha-header.jpg');">
-        <div class="world-header-text">
-          <span class="world-code">L-α</span>
-          <span class="world-name">魔術世界</span>
-          <span class="world-alias">[“Arcanis”]</span>
-        </div>
-      </div>
-      <div class="log-description">
-        “法則が現実に優先する世界。魔術の起源とされるが、人類との交流は断続的で極秘扱い。”
-      </div>
-      <div class="log-properties">
-        <ul>
-          <li><strong>主な危険度：</strong>情報漏洩、構造干渉、理論逆流</li>
-          <li><strong>接触事例：</strong>8件（交渉・技術流入例含む）</li>
-          <li><strong>主要現象：</strong>魔術式、世界法則書き換え、観測干渉</li>
-        </ul>
-      </div>
-      <div class="log-notes">
-        <strong>【調査記録】</strong>
-        <p>[LY121-07] 調査班 久世：現地法則は逐次変化。CPO独自研究体制強化推奨。</p>
-        <p>[LY122-02] 分析班 八重森：異世界から持ち込まれた術式は国内基準未適合。封印要請中。</p>
-      </div>
-    </div>
+<div class="access-warning">
+  <span class="sys-label">[CPO D5 SECURE TERMINAL]</span><br>
+  Clearance Level: <span style="color:#fc4d4d;">06+</span> required<br>
+  Unauthorized access is strictly prohibited.
+</div>
 
-    <!-- 魔物世界 V-Ω -->
-    <div class="world-log vomega">
-      <div class="log-header">
-        <div class="world-header-text">
-          <span class="world-code">V-Ω</span>
-          <span class="world-name">魔物世界</span>
-          <span class="world-alias">[“Nocturnis”]</span>
-        </div>
-      </div>
-      <div class="log-description">
-        “敵対的な異形存在が徘徊し、現実法則が度々崩壊。観測不能な『穴』や奇形生物が確認されている。”
-      </div>
-      <div class="log-properties">
-        <ul>
-          <li><strong>主な危険度：</strong>侵食災害、構造崩壊、生物的脅威</li>
-          <li><strong>接触事例：</strong>12件（敵対・襲撃例多数）</li>
-          <li><strong>主要現象：</strong>形態変化、時空歪曲、精神汚染</li>
-        </ul>
-      </div>
-      <div class="log-notes">
-        <strong>【調査記録】</strong>
-        <p>[LY120-04] 戦闘班 神城：敵性反応が予測不能。短時間の接触でも精神的後遺症例あり。</p>
-        <p>[LY122-11] 調査班 真壁：現地地形が短周期で変化。標識設置不可。</p>
-      </div>
-    </div>
 
-    <!-- 精霊世界 A-δ -->
-    <div class="world-log adelta">
-      <div class="log-header">
-        <div class="world-header-text">
-          <span class="world-code">A-δ</span>
-          <span class="world-name">精霊世界</span>
-          <span class="world-alias">[“Sylphade”]</span>
-        </div>
-      </div>
-      <div class="log-description">
-        “美しい景観と魔力に満ちるが、人間を異界に誘い込む性質あり。非敵対的だが危険。”
-      </div>
-      <div class="log-properties">
-        <ul>
-          <li><strong>主な危険度：</strong>失踪、幻覚作用、意思同調</li>
-          <li><strong>接触事例：</strong>6件（大半が“消失”扱い）</li>
-          <li><strong>主要現象：</strong>幻視、記憶変質、動植物変容</li>
-        </ul>
-      </div>
-      <div class="log-notes">
-        <strong>【調査記録】</strong>
-        <p>[LY121-14] 分析班 望月：一部存在が“話しかけてくる”幻覚を引き起こす。長期滞在厳禁。</p>
-        <p>[LY124-01] 医療班 狭間：帰還者に一時的な言語障害例。</p>
-      </div>
+
+<!-- 魔術世界 L-α（Arcanis） -->
+<div class="world-log lalpha">
+  <div class="log-header with-filter" style="background-image: url('img/l-alpha-header.jpg');">
+    <div class="world-header-text">
+      <span class="world-code">L-α</span>
+      <span class="world-name">魔術世界</span>
+      <span class="world-alias">[“Arcanis”]</span>
     </div>
+  </div>
+  <div class="log-description">
+    <h4>世界概要</h4>
+    <p>
+      本世界は、現実世界と異なる「術式」ないし「法則記述」によって構造が維持されていると推察される異界である。従来の物理法則はごく一部のみ適用され、その他の全現象は現地独自の理論体系に従っていると見られる。CPO観測例では、物質変換・空間歪曲・情報の直接操作など、現実世界では「魔術」と定義される現象が日常的に確認される。なお、現地における時間や空間の認識も我々の基準とは異なる可能性が高く、安定した観測は困難を極めている。
+    </p>
+    <p>
+      染縁発生による接続・観測事例は存在するが、いずれも詳細な交流や情報の完全な持ち帰りには至っていない。現地の“知性体”との意思疎通は極めて限定的で、CPO本部の現状解釈としては「観測を許容する環境を一時的に構築できる」程度に留まる。現地からの情報流入（術式理論、現象断片等）は多くが断片的・変質的であり、正規の法則化には失敗している。
+    </p>
+    <h4>存在種別</h4>
+    <p>
+      確認されている現地存在は、明確な生物的個体よりも、意識体または構造を持たない知性集合のような反応を示すものが大半である。物質的身体を持たず、現地法則によって一時的に“形”を持つもの、光や影、流動的なエネルギー体、幾何学的な構造体等が報告されている。言語や姿勢といった人類の常識的なコミュニケーション手段はほぼ通用せず、現地独自の“法則的意思伝達”が存在するとされるが、その具体的内容は不明。観測者の主観や精神状態により「見えるもの」「感じ取れるもの」が大きく変動する傾向がある。
+    </p>
+    <h4>染縁発生時の主な現象</h4>
+    <p>
+      本世界との染縁発生時には、局所的な空間の理論転換（重力方向や時間経過速度の変化、物質的構成要素の再配列等）、未知の術式陣の形成、現実空間内での観測不能なエネルギー活動が確認されている。発生区域においては一時的な“現実法則の緩み”が観測され、現地由来と思われる物質や情報が流入することがある。流入する情報の多くは術式断片や図形的データ、抽象化された理論構造等であり、解読は困難を極める。また、ごく稀に現地存在との“接触”が発生し、観測者に対して知覚・認知の変調や強い心理的影響を与えるケースも報告されている。
+    </p>
+    <h4>注意事項・危険性</h4>
+    <p>
+      本世界との安易な接触・長期観測は、観測者の知覚・認知・記憶に深刻な影響を及ぼすリスクが高い。特に現地由来の術式や法則構造を不用意に持ち帰った場合、現実世界内での法則逸脱や未確認現象の二次発生が確認されているため、独自判断での物質・情報の持込および利用は禁止されている。染縁発生区域の観測・封鎖はCPO本部の指示に従い、個人の判断による区域進入、現地存在への接触行為は禁止事項とする。
+    </p>
+  </div>
+</div>
+
+<!-- 魔物世界 V-Ω（Nocturnis） -->
+<div class="world-log vomega">
+  <div class="log-header with-filter" style="background-image: url('img/v-omega-header.jpg');">
+    <div class="world-header-text">
+      <span class="world-code">V-Ω</span>
+      <span class="world-name">魔物世界</span>
+      <span class="world-alias">[“Nocturnis”]</span>
+    </div>
+  </div>
+  <div class="log-description">
+    <h4>世界概要</h4>
+    <p>
+      現実世界の物理法則や生態系と著しく異なる、敵対的かつ不定形な異形存在が主として確認されている世界。多くの場合、空間自体が流動的で安定せず、現地における“地形”や“生態系”の定義も不明瞭である。CPOの観測記録では、視認できる範囲外にも存在すると思しき知覚外反応がしばしば検出されるほか、現地の生態現象は常に侵略的・攻撃的である傾向が強い。一般に“魔物”と呼ばれるものの、その分類は困難を極める。
+    </p>
+    <p>
+      染縁発生時に現地の存在が流入した場合、現実世界の生命体や構造物との共存は不可能であり、多くの接触事例において甚大な被害・消失現象が生じている。知性の有無や目的も不明なままであり、敵対的現象が観測された場合は最優先で封鎖・排除対応が必要となる。
+    </p>
+    <h4>存在種別</h4>
+    <p>
+      主に黒く蠢く不定形体、赤い発光部（眼状構造）を持つ個体、鋭利な外殻や突起を有する構造体、液状・霧状の集合意識など多様な存在が報告されている。一部には形状すら持たず、存在そのものが“知覚の外側”に位置するものもある。行動様式・反応パターンは一貫せず、いずれも高い攻撃性・侵食性を示す。現地由来の生命体は現実世界の生態系と交わることがなく、接触した場合は短時間で局所環境の崩壊や生命活動の停止が発生する。
+    </p>
+    <h4>染縁発生時の主な現象</h4>
+    <p>
+      本世界との染縁発生時には、局所空間の安定度が大きく低下し、実体のない“裂け目”や“歪み”が観測される。発生区域では温度・重力・光など基本物理パラメータが不規則に変動し、知覚外からの侵入や突発的な消失現象が連続することがある。現地由来の個体が現実世界に侵入した場合、直接的な攻撃・捕食行動に加え、物質・情報レベルでの侵食や感染現象が発生。侵入個体の駆除・隔離が不完全な場合、周囲環境の広範囲な崩壊・消滅も確認されている。
+    </p>
+    <h4>注意事項・危険性</h4>
+    <p>
+      本世界に関連する染縁発生区域への立ち入り、現地存在への直接的接触は、生命・精神の安全確保の観点から厳重に制限される。接触による二次感染、認知異常、不可逆的な消失現象が発生する恐れがあるため、未許可での単独対応は禁止事項とする。異常個体・空間現象の発生が認められた場合は直ちに封鎖・排除措置を取り、CPO本部の指示に従うこと。染縁発生区域の持続的監視と、侵入個体の完全隔離・駆除が求められる。
+    </p>
+  </div>
+</div>
+
+<!-- 精霊世界 A-δ（Sylphade） -->
+<div class="world-log adelta">
+  <div class="log-header with-filter" style="background-image: url('img/a-delta-header.jpg');">
+    <div class="world-header-text">
+      <span class="world-code">A-δ</span>
+      <span class="world-name">精霊世界</span>
+      <span class="world-alias">[“Sylphade”]</span>
+    </div>
+  </div>
+  <div class="log-description">
+    <h4>世界概要</h4>
+    <p>
+      本世界は、現実世界の物理法則の大部分を共有しつつも、豊富なエネルギー循環と異常に高い“調和性”を持つことが特徴である。観測された景観は極めて美麗かつ幻想的で、浮遊する島、虹色の霧、発光する水や草木などが常態として存在する。現地空間は明確な境界を持たず、ゆるやかに流動・拡張する性質を示す。CPOの仮説では、物質・生命・意思が分離せず“全体でひとつの生態系”として機能している可能性が指摘されている。
+    </p>
+    <p>
+      染縁を通じて現地の景観や一部存在が現実世界に流入する際、危険な敵意や破壊性は見られないが、極めて高い“誘引性”と“同調作用”を持つため、観測者の帰還困難や認知変質が多発する。CPO本部では本世界を“非敵対的だが危険”と分類している。
+    </p>
+    <h4>存在種別</h4>
+    <p>
+      発光体、半透明の精霊、蝶や魚のような形状を持つ浮遊生物、動く樹木、気体状のエネルギー存在等が報告されている。生物的個体と物質、エネルギー体や知性体の明確な境界はなく、観測者の主観によって“見え方”が大きく変動する。現地の存在は人間に対し直接的な敵意や接触行動を示すことは稀だが、観測者を“招き入れる”ような現象（空間誘引、意識同調、感覚の引き寄せ）が多数確認されている。
+    </p>
+    <h4>染縁発生時の主な現象</h4>
+    <p>
+      染縁発生時には、現実世界においても一時的な景観変化（草花・水辺・光の色彩変化）、局所的な重力・音響・空気成分の変動、未知の生物個体の発生が観測される。観測区域内では、対象者が“幻視”や“幻聴”を体験するケースが多く、長期滞在者には認識の同調や時間感覚の変容、記憶変質などが発生することがある。なお、帰還困難者の中には、自発的に現地への適応・消失を選択したと思われる例も存在する。
+    </p>
+    <h4>注意事項・危険性</h4>
+    <p>
+      本世界に関連する染縁区域の長期観測、現地存在との意図的な接触は、観測者自身の意思や認識を不安定化させる危険がある。特に“招き入れ現象”への抵抗は困難を極め、知らず知らずのうちに認識同調・消失現象が進行する。区域内での単独行動や、現地存在への応答・意識集中は禁止。観測はCPO本部の指示下で短時間かつ多人数体制で実施し、異常を感じた場合は即時撤退すること。
+    </p>
+  </div>
+</div>
+
 
     <!-- 例外世界 EX-μ -->
-    <div class="world-log exmu">
-      <div class="log-header">
-        <div class="world-header-text">
-          <span class="world-code">EX-μ</span>
-          <span class="world-name">例外世界</span>
-          <span class="world-alias">[“Nullheim”]</span>
-        </div>
-      </div>
-      <div class="log-description">
-        “本来、世界と接続不可能とされた分類外異界。現象記録は断片的で、観測情報も矛盾が多い。”
-      </div>
-      <div class="log-properties">
-        <ul>
-          <li><strong>主な危険度：</strong>情報欠損、実体消失、観測エラー</li>
-          <li><strong>接触事例：</strong>3件（全例未帰還）</li>
-          <li><strong>主要現象：</strong>時空断絶、因果律崩壊、観測者消滅</li>
-        </ul>
-      </div>
-      <div class="log-notes">
-        <strong>【調査記録】</strong>
-        <p>[LY121-11] 技術班 久世：ログに“消去不能な空白”出現。後遺症あり。</p>
-        <p>[LY122-13] 分析班 八重森：座標記録が循環参照を起こす。封印管理へ移行。</p>
-      </div>
+<div class="world-log exmu">
+  <div class="log-header with-filter" style="background-image: url('img/ex-mu-header.jpg');">
+    <div class="world-header-text">
+      <span class="world-code">EX-μ</span>
+      <span class="world-name">例外世界</span>
+      <span class="world-alias">[“Nullheim”]</span>
     </div>
+  </div>
+  <div class="log-description">
+    <h4>世界概要</h4>
+    <p>
+      既存の分類に属さない、観測自体が困難な異界。空間・時間・物質のいずれにも明確な基準が存在せず、「接続」や「交流」という概念自体が成立しない。記録や報告は断片的かつ矛盾を含み、全貌は一切不明。
+    </p>
+    <h4>存在種別</h4>
+    <p>
+      “存在”という定義が適用できない。観測者によっては「何もいない」「何かがある」と認識が分かれるが、いずれも恒常性を持たない。観測の試み自体が現象の変質や消失を引き起こす可能性あり。
+    </p>
+    <h4>染縁発生時の主な現象</h4>
+    <p>
+      局所的な情報欠損、空間の消失、観測データの不整合。時折“空白”や“エラー”として記録に残るが、その都度内容が異なる。現象の再現性は確認できていない。
+    </p>
+    <h4>注意事項・危険性</h4>
+    <p>
+      対応基準なし。観測・記録・封鎖のいずれも有効な手段が確立されていない。アクセスは最小限に留め、現象が検知された場合は速やかに報告のこと。
+    </p>
+  </div>
+</div>
+
 
     <!-- 情報世界 INF-ξ -->
-    <div class="world-log infxi">
-      <div class="log-header">
-        <div class="world-header-text">
-          <span class="world-code">INF-ξ</span>
-          <span class="world-name">情報世界</span>
-          <span class="world-alias">[“Infinitum”]</span>
-        </div>
-      </div>
-      <div class="log-description">
-        “物質より情報や概念が優先される世界。現象はほぼ観測不能、記録すら困難。”
-      </div>
-      <div class="log-properties">
-        <ul>
-          <li><strong>主な危険度：</strong>記録消失、自己認識崩壊、情報感染</li>
-          <li><strong>接触事例：</strong>2件（観測のみ）</li>
-          <li><strong>主要現象：</strong>記憶混線、因果反転、存在証明の消滅</li>
-        </ul>
-      </div>
-      <div class="log-notes">
-        <strong>【調査記録】</strong>
-        <p>[LY120-03] 記録班 仁：自身の観測記録が“2箇所同時に出現”。原因不明。</p>
-        <p>[LY123-02] 分析班 八重森：現地データの物理抽出に失敗。端末複製も不可。</p>
-      </div>
+<div class="world-log infxi">
+  <div class="log-header with-filter" style="background-image: url('img/inf-xi-header.jpg');">
+    <div class="world-header-text">
+      <span class="world-code">INF-ξ</span>
+      <span class="world-name">情報世界</span>
+      <span class="world-alias">[“Infinitum”]</span>
     </div>
+  </div>
+  <div class="log-description">
+    <h4>世界概要</h4>
+    <p>
+      物質的実体よりも“情報”や“概念”が優先されると推定される世界。CPOにおける分類は暫定的であり、現実との接続条件すら判然としない。記録や報告の大半は不完全または消失している。
+    </p>
+    <h4>存在種別</h4>
+    <p>
+      既知の生物・現象・物質には該当しない。観測試行ごとに記録内容が変化し、場合によっては“存在の証明”自体が消滅する。知性・意識・現象のいずれにも規則性なし。
+    </p>
+    <h4>染縁発生時の主な現象</h4>
+    <p>
+      局所的な記録消失、因果律の逸脱、自己認識の喪失。現象自体が“観測されない”ことが主な特徴であり、発生区域の痕跡も残らない場合がある。
+    </p>
+    <h4>注意事項・危険性</h4>
+    <p>
+      いかなる観測・記録手段も現状では無効。担当者の交替、複数班による相互確認も推奨されるが、効果は不明。異常検知時は速やかに本部へ連絡のこと。
+    </p>
+  </div>
+</div>
+
 
   </div>
 </body>
