@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DIMENSIONAL LOGS | Central Public Order</title>
+  <style>
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+  background: #151a20;
+}
+.nav-title {
+  font-size: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #f17979;
+  font-weight: bold;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
+
+    body {
+      background: #151a20;
+      color: #e0e7ef;
+      font-family: 'Orbitron', 'Segoe UI', sans-serif;
+      margin: 0; padding: 0;
+    }
+    .dimensional-container {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 50px 0 80px 0;
+    }
+    .world-log {
+      border-radius: 16px;
+      margin: 36px 14px;
+      box-shadow: 0 4px 24px #1118 0px 0px 16px 0px;
+      overflow: hidden;
+      border: 1.5px solid #293149;
+      --world-main: 108,70,255; /* デフォ紫 */
+      background: linear-gradient(
+        90deg,
+        rgba(var(--world-main),0.16) 0%,
+        rgba(var(--world-main),0.01) 100%
+      );
+      /* グラデーションは各世界で色が変わる！ */
+    }
+    /* 各世界ごとの色指定 */
+    .world-log.lalpha   { --world-main: 108,70,255; }   /* 紫 */
+    .world-log.vomega   { --world-main: 255,64,64;  }   /* 赤 */
+    .world-log.adelta   { --world-main: 28,200,220; }   /* 青緑 */
+    .world-log.exmu     { --world-main: 205,206,215; }  /* 灰 */
+    .world-log.infxi    { --world-main: 40,46,85;   }   /* 濃紺 */
+
+.log-header {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 108px;                  /* PC基準の高さ */
+  padding: 22px 28px 17px 28px;
+  border-bottom: 2px solid #303851;
+  overflow: hidden;
+  background: #1b162b;
+  background-size: cover;
+  background-position: center;
+  /* 背景画像は style属性や追加クラスで指定 */
+}
+@media (max-width: 700px) {
+  .log-header { min-height: 70px; }
+}
+
+    .world-header-text {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .world-code {
+      font-weight: 900;
+      font-size: 1.3rem;
+      letter-spacing: 0.03em;
+      color: #fff;
+      text-shadow: 0 2px 6px #000a, 0 0 3px #b1aaff;
+    }
+    .world-name {
+      font-size: 1.08rem;
+      font-weight: bold;
+      color: #e0e7ef;
+      margin-top: 4px;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 2px #000a;
+    }
+    .world-alias {
+      font-size: 0.95rem;
+      color: #d6cfff;
+      font-style: italic;
+      margin-top: 3px;
+      text-shadow: 0 1px 1px #222b;
+    }
+    .log-description,
+    .log-properties,
+    .log-notes {
+      background: none;
+      margin-left: 28px;
+      margin-right: 28px;
+    }
+    .log-description {
+      font-size: 1rem;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: #dbeafe;
+      line-height: 1.65;
+      font-family: 'Segoe UI', 'Noto Sans JP', sans-serif;
+    }
+    .log-properties {
+      margin-top: 14px;
+      margin-bottom: 12px;
+      font-size: 0.97rem;
+      color: #b6bace;
+    }
+    .log-properties ul {
+      padding-left: 1.3em;
+      margin: 0;
+    }
+    .log-properties li {
+      margin-bottom: 6px;
+      line-height: 1.7;
+    }
+    .log-notes {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      font-size: 0.96rem;
+      color: #b8c2e3;
+      border-radius: 7px;
+      padding: 13px 14px 12px 18px;
+      border-left: 3px solid #a5b4fc;
+    }
+    .log-notes strong {
+      font-weight: 700;
+      color: #a5b4fc;
+      font-size: 1.06em;
+    }
+    @media (max-width: 700px) {
+      .dimensional-container { padding: 72px 0 28px 0; }
+      .world-log { margin: 12px 3px; }
+      .log-header { padding: 14px 7px 7px 7px; min-height: 74px;}
+      .log-description, .log-properties, .log-notes {
+        margin-left: 9px; margin-right: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="nav-top">
+  <button class="back-btn" onclick="history.back()">≪</button>
+  <span class="nav-title">DIMENSIONAL LOGS</span>
+</div>
+
+  <div class="dimensional-container">
+
+    <!-- 魔術世界 L-α -->
+    <div class="world-log lalpha">
+      <div class="log-header" style="background-image: url('img/l-alpha-header.jpg');">
+        <div class="world-header-text">
+          <span class="world-code">L-α</span>
+          <span class="world-name">魔術世界</span>
+          <span class="world-alias">[“Arcanis”]</span>
+        </div>
+      </div>
+      <div class="log-description">
+        “法則が現実に優先する世界。魔術の起源とされるが、人類との交流は断続的で極秘扱い。”
+      </div>
+      <div class="log-properties">
+        <ul>
+          <li><strong>主な危険度：</strong>情報漏洩、構造干渉、理論逆流</li>
+          <li><strong>接触事例：</strong>8件（交渉・技術流入例含む）</li>
+          <li><strong>主要現象：</strong>魔術式、世界法則書き換え、観測干渉</li>
+        </ul>
+      </div>
+      <div class="log-notes">
+        <strong>【調査記録】</strong>
+        <p>[LY121-07] 調査班 久世：現地法則は逐次変化。CPO独自研究体制強化推奨。</p>
+        <p>[LY122-02] 分析班 八重森：異世界から持ち込まれた術式は国内基準未適合。封印要請中。</p>
+      </div>
+    </div>
+
+    <!-- 魔物世界 V-Ω -->
+    <div class="world-log vomega">
+      <div class="log-header">
+        <div class="world-header-text">
+          <span class="world-code">V-Ω</span>
+          <span class="world-name">魔物世界</span>
+          <span class="world-alias">[“Nocturnis”]</span>
+        </div>
+      </div>
+      <div class="log-description">
+        “敵対的な異形存在が徘徊し、現実法則が度々崩壊。観測不能な『穴』や奇形生物が確認されている。”
+      </div>
+      <div class="log-properties">
+        <ul>
+          <li><strong>主な危険度：</strong>侵食災害、構造崩壊、生物的脅威</li>
+          <li><strong>接触事例：</strong>12件（敵対・襲撃例多数）</li>
+          <li><strong>主要現象：</strong>形態変化、時空歪曲、精神汚染</li>
+        </ul>
+      </div>
+      <div class="log-notes">
+        <strong>【調査記録】</strong>
+        <p>[LY120-04] 戦闘班 神城：敵性反応が予測不能。短時間の接触でも精神的後遺症例あり。</p>
+        <p>[LY122-11] 調査班 真壁：現地地形が短周期で変化。標識設置不可。</p>
+      </div>
+    </div>
+
+    <!-- 精霊世界 A-δ -->
+    <div class="world-log adelta">
+      <div class="log-header">
+        <div class="world-header-text">
+          <span class="world-code">A-δ</span>
+          <span class="world-name">精霊世界</span>
+          <span class="world-alias">[“Sylphade”]</span>
+        </div>
+      </div>
+      <div class="log-description">
+        “美しい景観と魔力に満ちるが、人間を異界に誘い込む性質あり。非敵対的だが危険。”
+      </div>
+      <div class="log-properties">
+        <ul>
+          <li><strong>主な危険度：</strong>失踪、幻覚作用、意思同調</li>
+          <li><strong>接触事例：</strong>6件（大半が“消失”扱い）</li>
+          <li><strong>主要現象：</strong>幻視、記憶変質、動植物変容</li>
+        </ul>
+      </div>
+      <div class="log-notes">
+        <strong>【調査記録】</strong>
+        <p>[LY121-14] 分析班 望月：一部存在が“話しかけてくる”幻覚を引き起こす。長期滞在厳禁。</p>
+        <p>[LY124-01] 医療班 狭間：帰還者に一時的な言語障害例。</p>
+      </div>
+    </div>
+
+    <!-- 例外世界 EX-μ -->
+    <div class="world-log exmu">
+      <div class="log-header">
+        <div class="world-header-text">
+          <span class="world-code">EX-μ</span>
+          <span class="world-name">例外世界</span>
+          <span class="world-alias">[“Nullheim”]</span>
+        </div>
+      </div>
+      <div class="log-description">
+        “本来、世界と接続不可能とされた分類外異界。現象記録は断片的で、観測情報も矛盾が多い。”
+      </div>
+      <div class="log-properties">
+        <ul>
+          <li><strong>主な危険度：</strong>情報欠損、実体消失、観測エラー</li>
+          <li><strong>接触事例：</strong>3件（全例未帰還）</li>
+          <li><strong>主要現象：</strong>時空断絶、因果律崩壊、観測者消滅</li>
+        </ul>
+      </div>
+      <div class="log-notes">
+        <strong>【調査記録】</strong>
+        <p>[LY121-11] 技術班 久世：ログに“消去不能な空白”出現。後遺症あり。</p>
+        <p>[LY122-13] 分析班 八重森：座標記録が循環参照を起こす。封印管理へ移行。</p>
+      </div>
+    </div>
+
+    <!-- 情報世界 INF-ξ -->
+    <div class="world-log infxi">
+      <div class="log-header">
+        <div class="world-header-text">
+          <span class="world-code">INF-ξ</span>
+          <span class="world-name">情報世界</span>
+          <span class="world-alias">[“Infinitum”]</span>
+        </div>
+      </div>
+      <div class="log-description">
+        “物質より情報や概念が優先される世界。現象はほぼ観測不能、記録すら困難。”
+      </div>
+      <div class="log-properties">
+        <ul>
+          <li><strong>主な危険度：</strong>記録消失、自己認識崩壊、情報感染</li>
+          <li><strong>接触事例：</strong>2件（観測のみ）</li>
+          <li><strong>主要現象：</strong>記憶混線、因果反転、存在証明の消滅</li>
+        </ul>
+      </div>
+      <div class="log-notes">
+        <strong>【調査記録】</strong>
+        <p>[LY120-03] 記録班 仁：自身の観測記録が“2箇所同時に出現”。原因不明。</p>
+        <p>[LY123-02] 分析班 八重森：現地データの物理抽出に失敗。端末複製も不可。</p>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
