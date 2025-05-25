@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ORGANIZATION | 組織構造</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #181b22;
+      color: #e5e7eb;
+      font-family: 'Segoe UI', 'Noto Sans JP', 'メイリオ', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+.nav-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 16px;
+  z-index: 1000;
+  background: #191b23;
+}
+.nav-title {
+  font-size: clamp(0.9rem, 4vw, 1.3rem); 
+  font-family: 'Rajdhani', 'Segoe UI', 'Noto Sans JP', sans-serif;
+  color: #79c5f1;
+  font-weight: 400;
+}
+.nav-title-ja {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: clamp(0.75rem, 3vw, 1.1rem);
+  color: #79c5f1;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.back-btn {
+  font-size: 1rem;
+  background: linear-gradient(120deg, #1e293b, #111827);
+  color: #dbeafe;
+  font-weight: bold;
+  border: 1px solid #3b82f6;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.2s ease;
+}
+.back-btn:hover {
+  background: #1e40af;
+}
+
+    .org-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 86px 24px 120px 24px;
+      box-sizing: border-box;
+    }
+    .section-block {
+      background: #222731;
+      border-radius: 13px;
+      box-shadow: 0 2px 14px 0 rgba(32,36,52,0.13);
+      margin-bottom: 38px;
+      padding: 0 0 28px 0;
+      overflow: hidden;
+    }
+
+    .section-title {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1.13rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      margin: 15px 0 10px 0;
+      padding: 10px 18px 12px 18px;
+      border-radius: 0 0 10px 0;
+      /* 背景・色は各sectionで個別指定 */
+    }
+    /* ---- CPO カラー ---- */
+    .section-cpo .section-title {
+      color: #4ac09c;
+      border-left: 6px solid #4ac09c;
+      padding-left: 12px;
+    }
+    .section-cpo .unit-label {
+      color: #4ac09c;
+    }
+    /* ---- 五課 カラー ---- */
+    .section-d5 .section-title {
+      color: #ffe28c;
+      border-left: 6px solid #ffe28c;
+      padding-left: 12px;
+    }
+    .section-d5 .unit-label {
+      color: #ffe28c;
+    }
+    /* ---- 五課本部 カラー ---- */
+    .section-hq .section-title {
+      color: #ff954d;
+      border-left: 6px solid #ff954d;
+      padding-left: 12px;
+    }
+    .section-hq .floor-label {
+      color: #ff954d;
+    }
+
+    .section-content {
+      padding: 0 22px;
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin-bottom: 0;
+    }
+
+    /* 共通ラベル・説明 */
+    .unit-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0 0;
+    }
+    .unit-list li {
+      margin-bottom: 19px;
+    }
+    .unit-label {
+      display: block;
+      font-weight: bold;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      font-size: 1.04em;
+      letter-spacing: 0.02em;
+    }
+    .unit-desc {
+      display: block;
+      color: #e5e7eb;
+      font-size: 0.96em;
+      line-height: 1.7;
+      margin-bottom: 0.5em;
+      padding-left: 0.25em;
+    }
+
+    /* HQフロア構成 */
+    .floor-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0 0 0;
+    }
+    .floor-list li {
+      margin-bottom: 20px;
+    }
+    .floor-label {
+      display: block;
+      font-weight: bold;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      font-size: 1.04em;
+      letter-spacing: 0.03em;
+    }
+    .floor-desc {
+      display: block;
+      color: #e5e7eb;
+      font-size: 0.96em;
+      line-height: 1.7;
+      padding-left: 0.25em;
+    }
+    .floor-divider {
+      border: none;
+      border-top: 1.5px solid #f3ea9d;
+      margin: 18px 0 20px 0;
+      width: 100%;
+      opacity: 0.66;
+    }
+
+    @media (max-width: 600px) {
+      .org-container { padding: 68px 7px 26px 7px; }
+      .section-title { font-size: 1.01rem; padding: 13px 12px 11px 14px;}
+      .section-content { font-size: 0.96rem; padding-left: 7px; padding-right: 7px;}
+      .unit-label { font-size: 1em; }
+      .unit-desc { font-size: 0.94em; }
+      .floor-label { font-size: 0.98em; }
+      .floor-desc { font-size: 0.92em; }
+    }
+  </style>
+</head>
+<body>
+<div class="nav-top">
+  <button class="back-btn" onclick="location.href='main.html'">≪</button>
+  <span class="nav-title">
+    ORGANIZATION <span class="nav-title-ja">｜組織構造</span>
+  </span>
+</div>
+<div class="org-container">
+  <!-- CPO -->
+  <section class="section-block section-cpo">
+    <div class="section-title">中央治安維持局（CPO）</div>
+    <div class="section-content">
+      中央治安維持局（CPO, <b>Central Public Order</b>）は、神鎖国における異世界災害対策の中枢組織として、国家主導で設立された超法規的・直轄機関である。<br>
+      通常の警察・軍では対応不可能な“現実外”の異常現象に対し、初動対応・制圧・収容・研究・機密管理までを一元的に担う。<br>
+      警察・軍・行政とは独立して運用され、実態を知るのはごく一部の政府高官のみという極秘性の高い組織となっている。
+      <hr class="floor-divider">
+      <ul class="unit-list">
+        <li>
+          <span class="unit-label">局長室・監察部・特務審議室</span>
+          <span class="unit-desc">
+            組織全体の統括・監督および特別案件の審議を行う中枢部門。各課の運用や重大な意思決定を担い、外部との調整や監察機能も有する。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">第一課（情報解析課）</span>
+          <span class="unit-desc">
+            異常現象の感知・分析・情報収集を担当。各種センサーや分析装置による初動監視と、全体情報ネットワークの管理を担う。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">第二課（対魔災行動課）</span>
+          <span class="unit-desc">
+            災害現場での実働・戦闘・制圧を担う部隊。迅速な現場投入と制圧行動、特殊装備の運用に特化する。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">第三課（収容管理課）</span>
+          <span class="unit-desc">
+            異常存在や遺物の確保・収容・管理を担当。封印技術や警備システムを駆使し、危険物・危険区域の安全管理を行う。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">第四課（技術研究課）</span>
+          <span class="unit-desc">
+            魔術・結晶・装備技術の研究開発部門。最新技術の導入と既存装備の改良、現場部隊への技術サポートを担当。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">第五課（特異災害対策課）</span>
+          <span class="unit-desc">
+            調査・戦闘・解析・医療を統合運用する即応型総合部隊。局内でも特例的な独立権限を持ち、異常事態への総合対応を行う。
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- Division 5 -->
+  <section class="section-block section-d5">
+    <div class="section-title">第五特異災害対策課（五課 / Division 5）</div>
+    <div class="section-content">
+      第五特異災害対策課（五課 / <b>Division 5</b>）は、中央治安維持局（CPO）内部で唯一、調査・戦闘・解析・医療までを統合的に運用する特殊総合部隊である。<br>
+      染縁をはじめとした異世界災害発生時の初動対応、現地調査、戦闘鎮圧、被害者救護、異常存在や物質の分析・管理までを一貫して現場で完結できる即応力を持つ。<br>
+      現場運用では「バディ制（二人一組）」を採用しており、調査員と戦闘員など異なる専門性を持つ隊員がペアで出動することで、迅速な判断と安全確保、状況変化への柔軟な対応を実現している。<br>
+      他課とも密接に連携しつつ、独立した判断と行動が許されており、特殊な任務や高危険度案件への対応を主な使命としている。
+      <hr class="floor-divider">
+      <ul class="unit-list">
+        <li>
+          <span class="unit-label">戦闘班</span>
+          <span class="unit-desc">
+            災害現場の制圧や調査班の護衛など、対異常現象の実戦任務を担当。身体強化や特殊武装による即応対応が主。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">調査班</span>
+          <span class="unit-desc">
+            初動調査、現場での情報収集・記録、異常現象の検証を担当。分析能力や危機察知力に優れる。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">解析班</span>
+          <span class="unit-desc">
+            魔術理論・結晶反応などの研究分析を行う。本部常駐で理論解析や記録媒体管理も担当。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">医療班</span>
+          <span class="unit-desc">
+            戦闘員や調査員の治療、精神ケア、医療資材の管理などを担当。迅速な初期処置や現場医療に対応する。
+          </span>
+        </li>
+        <li>
+          <span class="unit-label">記録班</span>
+          <span class="unit-desc">
+            任務記録や報告書の作成、情報管理・班間連携を支援。魔術的記録媒体の運用も担当。
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- HQ -->
+  <section class="section-block section-hq">
+    <div class="section-title">第五特異災害対策課　本部</div>
+    <div class="section-content">
+      第五特異災害対策課（五課）の本部ビルは、首都圏の一角に位置する地上6階・地下2階建ての専用施設であり、少数精鋭による即応性と機密性を両立する設計が特徴です。<br>
+      フロアごとに各班・機能部門が集約され、通常時から緊急時まで一貫したオペレーションが可能となっています。セキュリティはCPO内でも最高レベルで、各階へのアクセスには個別認証が必要です。
+      <hr class="floor-divider">
+      <ul class="floor-list">
+        <li>
+          <span class="floor-label">6F｜指令室・局長室</span>
+          <span class="floor-desc">
+            本部の中枢フロア。緊急時の指令発信や全体統括、局長の執務・ブリーフィングに使用される。高度なセキュリティと通信設備が集中しており、原則立入制限付き。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">5F｜対策本部・会議室</span>
+          <span class="floor-desc">
+            災害対策の総合指揮や全体会議、班ごとの打ち合わせが行われる。大規模災害時には臨時作戦本部として24時間稼働することも。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">4F｜戦闘班・調査班</span>
+          <span class="floor-desc">
+            戦闘班・調査班の活動拠点。日常的な訓練や装備点検、出動準備が主。緊急時は現場チームの迅速な出撃対応に利用される。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">3F｜解析班・医療班・記録班</span>
+          <span class="floor-desc">
+            解析班によるデータ解析・結晶分析、医療班による治療・健康管理、記録班の情報整理が行われるフロア。調査後の解析作業や被災者の初期処置もここで実施される。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">2F｜技術室・装備庫・休憩室</span>
+          <span class="floor-desc">
+            装備開発や点検、物資管理、隊員のリフレッシュのための休憩スペース。通常時は整備・調整作業が多く、緊急時は即時配備・補給拠点となる。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">1F｜受付・警備室</span>
+          <span class="floor-desc">
+            一般来訪者・業者対応、警備・監視機能を兼ねるフロア。通常は立ち入り制限が最も緩いが、非常時は一時封鎖にも対応。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">B1F｜収容設備・緊急対応区画</span>
+          <span class="floor-desc">
+            染縁現象や異常存在の一時収容・隔離、災害時の緊急対処設備が集約。セキュリティが最も厳重で、立ち入りは許可者のみに限定。
+          </span>
+        </li>
+        <li>
+          <span class="floor-label">B2F｜特別封印・機密区画</span>
+          <span class="floor-desc">
+            本部最深部に位置する、高度な封印技術と重警備が施された特別管理エリア。危険度の極めて高い異常存在や未解明物品の長期収容、特殊実験設備が集約されている。アクセス権限は局長および指定幹部に限定されており、通常業務での立ち入りは認められていない。
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+</body>
+</html>

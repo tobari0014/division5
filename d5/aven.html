@@ -11,7 +11,10 @@
     <button onclick="location.href='../operator.html'" class="back-btn">≪</button>
   </div>
   <div class="profile-container">
+      <picture>
+      <source srcset="img/aven_bg_sp.jpg" media="(max-width: 768px)">
     <img src="img/aven_bg.jpg" class="profile-bg" alt="" />
+     </picture>
     <div class="text-overlay">
       <div class="name-en">Aven Nocteil</div>
       <div class="name-ja kana">エイヴェン・ノクテイル</div>
@@ -28,15 +31,5 @@
       </div>
     </div>
   </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const img = document.querySelector('.profile-bg');
-    if (window.innerWidth <= 768) {
-      const src = img.getAttribute('src');
-      const spSrc = src.replace('_bg.jpg', '_bg_sp.jpg');
-      img.setAttribute('src', spSrc);
-    }
-  });
-</script>
 </body>
 </html>

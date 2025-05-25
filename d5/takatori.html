@@ -12,7 +12,11 @@
   </div>
 
   <div class="profile-container">
-    <img src="img/takatori_bg.jpg" class="profile-bg" alt="" />
+    <picture>
+  <source srcset="img/takatori_bg_sp.jpg" media="(max-width: 768px)">
+  <img src="img/takatori_bg.jpg" class="profile-bg" alt="" />
+</picture>
+
     <div class="text-overlay">
       <div class="name-en">Takatori Atsushi</div>
       <div class="name-ja">鷹取 篤志</div>
@@ -29,15 +33,5 @@
       </div>
     </div>
   </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const img = document.querySelector('.profile-bg');
-    if (window.innerWidth <= 768) {
-      const src = img.getAttribute('src');
-      const spSrc = src.replace('_bg.jpg', '_bg_sp.jpg');
-      img.setAttribute('src', spSrc);
-    }
-  });
-</script>
 </body>
 </html>

@@ -11,7 +11,11 @@
     <button onclick="location.href='../operator.html'" class="back-btn">≪</button>
   </div>
   <div class="profile-container">
-    <img src="img/kuze_bg.jpg" class="profile-bg" alt="" />
+    <picture>
+  <source srcset="img/kuze_bg_sp.jpg" media="(max-width: 768px)">
+  <img src="img/kuze_bg.jpg" class="profile-bg" alt="" />
+</picture>
+
     <div class="text-overlay">
       <div class="name-en">Kuze Azisa</div>
       <div class="name-ja">久世 梓</div>
@@ -28,15 +32,5 @@
       </div>
     </div>
   </div>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const img = document.querySelector('.profile-bg');
-    if (window.innerWidth <= 768) {
-      const src = img.getAttribute('src');
-      const spSrc = src.replace('_bg.jpg', '_bg_sp.jpg');
-      img.setAttribute('src', spSrc);
-    }
-  });
-</script>
 </body>
 </html>
